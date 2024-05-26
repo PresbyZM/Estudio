@@ -19,7 +19,7 @@
             </header>
         </div>
         <article class="container">
-            <h2>Tu seccion privada</h2>
+            <h2>Este es el inicio</h2>
         </article>
     </body>
 </html>

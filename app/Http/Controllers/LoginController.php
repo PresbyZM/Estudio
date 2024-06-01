@@ -13,15 +13,17 @@ class LoginController extends Controller
 {
     public function register(Request $request){
         //validar los datos
-        $user = new User();
+        $usuario = new User();
 
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $usuario->nombre_usuario = $request->nombre_usuario;
+        $usuario->apellidop_usuario = $request->apellidop_usuario;
+        $usuario->apellidom_usuario = $request->apellidom_usuario;
+        $usuario->email_usuario = $request->email_usuario;
+        $usuario->password = Hash::make($request->password);
 
-        $user->save();
+        $usuario->save();
 
-        Auth::login($user);
+        Auth::login($usuario);
 
         return redirect(route('inicio'));
     }
@@ -30,7 +32,7 @@ class LoginController extends Controller
         //validacion
 
         $credentials = [
-            "email" => $request->email,
+            "email_usuario" => $request->email_usuario,
             "password" => $request->password,
         ];
         

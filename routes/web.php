@@ -2,27 +2,28 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ClientesController;
 use GuzzleHttp\Middleware;
 
 /*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
+
 */
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+/*   Rutas de login y registro  */
 Route::view('/login', "login")->name('login');
 Route::view('/registro', "register")->name('registro');
-Route::view('/inicio', "index")->middleware('auth')->name('inicio');
 
 Route::post('/validar-registro', [LoginController::class, 'register'])->name('validar-registro');
 Route::post('/inicia-sesion', [LoginController::class, 'login'])->name('inicia-sesion');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+/*   la pagina principal  */
+Route::view('/inicio', "index")->middleware('auth')->name('inicio');
+
+
+/*   Rutas del modulo clientes frecuentes  */
+Route::resource('clientes', ClientesController::class)->middleware('auth');

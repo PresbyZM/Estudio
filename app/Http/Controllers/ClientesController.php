@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class ClientesController extends Controller
 {

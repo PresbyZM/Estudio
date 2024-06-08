@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\MaterialesController;
 use GuzzleHttp\Middleware;
 
 /*
@@ -27,3 +28,6 @@ Route::view('/inicio', "index")->middleware('auth')->name('inicio');
 
 /*   Rutas del modulo clientes frecuentes  */
 Route::resource('clientes', ClientesController::class)->middleware('auth');
+
+/*   Rutas del modulo inventario  */
+Route::resource('materiales', MaterialesController::class)->middleware('auth')->parameters(['materiales' => 'material']);

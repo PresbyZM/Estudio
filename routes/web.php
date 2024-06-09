@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\EventosController;
 use App\Http\Controllers\MaterialesController;
 use GuzzleHttp\Middleware;
 
@@ -31,3 +32,7 @@ Route::resource('clientes', ClientesController::class)->middleware('auth');
 
 /*   Rutas del modulo inventario  */
 Route::resource('materiales', MaterialesController::class)->middleware('auth')->parameters(['materiales' => 'material']);
+
+/*   Rutas del modulo agenda  */
+Route::resource('eventos', EventosController::class)->middleware('auth')->parameters(['eventos' => 'evento']);
+Route::view('/calendario', "eventos_calendario")->middleware('auth')->name('calendario');

@@ -5,7 +5,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\EventosController;
 use App\Http\Controllers\MaterialesController;
+use App\Http\Controllers\IngresosController;
 use GuzzleHttp\Middleware;
+use App\Http\Controllers\PerfilController;
 
 /*
 
@@ -36,3 +38,11 @@ Route::resource('materiales', MaterialesController::class)->middleware('auth')->
 /*   Rutas del modulo agenda  */
 Route::resource('eventos', EventosController::class)->middleware('auth')->parameters(['eventos' => 'evento']);
 Route::view('/calendario', "eventos_calendario")->middleware('auth')->name('calendario');
+
+/*   Rutas del modulo ingresos  */
+Route::get('/ingresos', [IngresosController::class, 'index'])->name('ingresos.index');
+Route::get('/ingresos/export-pdf', [IngresosController::class, 'exportPdf'])->name('ingresos.exportPdf');
+
+/*   Rutas del modulo de editar perfil  */
+Route::get('/perfil/editar', [PerfilController::class, 'edit'])->name('perfil.edit');
+Route::put('/perfil', [PerfilController::class, 'update'])->name('perfil.update');

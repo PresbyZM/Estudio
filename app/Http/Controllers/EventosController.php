@@ -35,13 +35,31 @@ class EventosController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-
-            
-
+            'nombre_evento' => 'required|string|max:30',
+            'dia_evento' => 'required|date',
+            'precio_evento' => 'nullable|numeric',
+            'descuento' => 'nullable|numeric',
+            'anticipo' => 'nullable|numeric',
+            'resto' => 'nullable|numeric',
+            'descripcion_evento' => 'nullable|string|max:50',
+            'estatus' => 'required|string|max:50',
+            'cliente_id' => 'required|exists:clientes,id',
         ]);
-        Evento::create($request->all());
+
+        $data = $request->all();
+
+        if (!empty($data['anticipo'])) {
+            $data['fecha_anticipo'] = now();
+        }
+
+        if (!empty($data['descuento'])) {
+            $data['fecha_resto'] = now();
+        }
+
+        Evento::create($data);
         return redirect()->route('eventos.index')->with('success', 'Nuevo evento creado exitosamente');
     }
+
 
     /**
      * Display the specified resource.
@@ -66,15 +84,23 @@ class EventosController extends Controller
     public function update(Request $request, Evento $evento): RedirectResponse
     {
         $request->validate([
-
             
-
         ]);
-        //dd($request->all());
-        $evento->update($request->all());
-        return redirect()->route('eventos.index')->with('success', 'Evento actualizado exitosamente');
 
+        $data = $request->all();
+
+        if (!empty($data['anticipo'])) {
+            $data['fecha_anticipo'] = now();
+        }
+
+        if (!empty($data['descuento'])) {
+            $data['fecha_resto'] = now();
+        }
+
+        $evento->update($data);
+        return redirect()->route('eventos.index')->with('success', 'Evento actualizado exitosamente');
     }
+
 
     /**
      * Remove the specified resource from storage.

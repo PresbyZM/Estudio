@@ -1,0 +1,169 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+}
+
+svg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: #0e4166;
+    background-image: linear-gradient(to bottom, rgba(14, 65, 102, 0.86), #0e4166);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.form-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: transparent;
+    color: white;
+    overflow: hidden;
+    padding-bottom: 90px; 
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    width: 360px;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    z-index: 0;
+}
+
+.card input {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.card input:focus {
+    border-color: #2575fc;
+    box-shadow: 0 0 8px rgba(37, 117, 252, 0.2);
+    outline: none;
+}
+
+.card input::placeholder {
+    color: #aaa;
+}
+
+.card button {
+    width: calc(100% - 20px);
+    padding: 12px;
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-bottom: -100px; 
+}
+
+.card button:hover {
+    background-color: #1a5bb8;
+}
+
+.form-label {
+    color: #333;
+    font-size: 16px;
+    text-align: left;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.form-control {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #2575fc;
+    outline: none;
+}
+
+.btn {
+    width: calc(100% - 20px);
+    padding: 12px;
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #1a5bb8;
+}
+
+.logo {
+    position: relative;
+    margin: 0 auto -10px auto;
+    margin-top: -40px; 
+    width: 100px; 
+    height: auto;
+    display: block; 
+}
+
+.card-title {
+    font-size: 24px;  
+    color: #333; 
+    margin-top: 5px; 
+    margin-bottom: 15px; 
+    text-align: center;  
+}
+
+.loader {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader img {
+    animation: spin 2s linear infinite;
+    width: 50px; 
+    height: 50px;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}

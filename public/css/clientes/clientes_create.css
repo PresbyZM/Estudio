@@ -1,0 +1,57 @@
+.form-floating > .form-control,
+.form-floating > .form-control-plaintext {
+    padding: 1rem .75rem;
+    padding-left: .75rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    border-radius: 0.5rem;
+    background-color: #f8f9fa;
+    font-size: 1rem;
+}
+
+.form-floating > label {
+    padding: 0.75rem 1rem;
+    pointer-events: none;
+    transition: all 0.2s ease-in-out;
+    opacity: 0.6;
+    font-size: 0.875rem; 
+}
+
+.form-floating > .form-control:focus ~ label, 
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+    transform: scale(.85) translateY(-0.5rem) translateX(.15rem); 
+    opacity: 1;
+}
+
+.form-control:focus {
+    border-color: #003366;
+    box-shadow: 0 0 5px rgba(0, 51, 102, 0.5);
+}
+
+.text-dark-blue {
+    color: #003366 !important;
+}
+
+.btn-dark-blue {
+    background-color: #003366;
+    border-color: #003366;
+    color: #fff;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.btn-dark-blue:hover {
+    background-color: #004080;
+    border-color: #004080;
+    color: #fff; 
+}
+
+.btn-outline-secondary {
+    color: #003366;
+    border-color: #003366;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #f8f9fa;
+    color: #004080; 
+}
+

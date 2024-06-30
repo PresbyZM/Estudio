@@ -1,43 +1,100 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Inicio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+@extends('layouts.base')
+
+@section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+                <h1 class="color-changing-shadow">Bienvenido a "FOTO Y VIDEO CALVARIO"</h1>
+                <p class="lead">Siempre la mejor calidad y creatividad en cada imagen.</p>
+                <div class="camera-animation">
+                    <!-- Logo -->
+                    <img src="{{ asset('images/logosinfondo.png') }}" alt="Logo" width="120">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @parent
     <style>
         body {
-            background-color: #1b1d1f;
-            color: white;
+            background-color: #222;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
         }
-        .header-title {
-            color: #ffffff;
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
         }
-        .header-link {
-            color: white;
-            text-decoration: none;
+
+        .camera-animation {
+            margin-top: 50px;
+            animation: bounce 2s ease-in-out infinite alternate;
         }
-        .header-link:hover {
-            text-decoration: underline;
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-20px);
+            }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        .color-changing-shadow {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .color-changing-shadow::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            mix-blend-mode: overlay;
+            animation: color-change 5s infinite alternate;
+        }
+
+        @keyframes color-change {
+            0%, 100% {
+                transform: translateX(-100%);
+                color: #fff; /* Blanco */
+            }
+            50% {
+                transform: translateX(0);
+                color: #add8e6; /* Celeste */
+            }
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <header class="d-flex flex-wrap align-items-center justify-content-between py-3 mb-4 border-bottom border-secondary">
-            <a class="d-flex align-items-center col-md-6 mb-2 mb-md-0 header-link text-nowrap">
-                Esta es la página principal @auth de {{ Auth::user()->nombre_usuario }} {{ Auth::user()->apellidom_usuario }} {{ Auth::user()->apellidop_usuario }} @endauth
-            </a>
-            <div class="col-md-3 text-end">
-                <a href="{{ route('logout') }}">
-                    <button type="button" class="btn btn-outline-primary me-2">Salir</button>
-                </a>
-            </div>
-        </header>
-    </div>
-    <article class="container">
-        <h2 class="header-title">Este es el inicio</h2>
-    </article>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endsection
+

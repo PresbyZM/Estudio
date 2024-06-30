@@ -3,6 +3,9 @@
 @section('content')
 <div class="row">
     <div class="col-12">
+        <br>
+        <br>
+        <br>
         <a href="{{ route('ingresos.exportPdf', ['month' => $month, 'year' => $year]) }}" class="btn btn-primary">Exportar PDF</a>
         
         <div>

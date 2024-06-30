@@ -12,9 +12,15 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function register(Request $request){
-        //validar los datos
-        $usuario = new User();
+        $request->validate([
+            'email_usuario' => 'required|email|unique:usuarios,email_usuario',
+            'password' => 'required|min:8',
+            'nombre_usuario' => 'required|string',
+            'apellidom_usuario' => 'required|string',
+            'apellidop_usuario' => 'required|string',
+        ]);
 
+        $usuario = new User();
         $usuario->nombre_usuario = $request->nombre_usuario;
         $usuario->apellidop_usuario = $request->apellidop_usuario;
         $usuario->apellidom_usuario = $request->apellidom_usuario;
@@ -25,7 +31,7 @@ class LoginController extends Controller
 
         Auth::login($usuario);
 
-        return redirect(route('inicio'));
+        return response()->json(['success' => true, 'redirect' => route('login')]);
     }
 
     public function login(Request $request){
@@ -39,10 +45,10 @@ class LoginController extends Controller
         $remember = ($request->has('remember') ? true : false);
         if(Auth::attempt($credentials, $remember)){
             $request->session()->regenerate();
-            return redirect()->intended(route('inicio'));
+            return redirect()->intended(route('inicio'))->with('success', 'Inicio de sesión exitoso.');
 
         }else{
-            return redirect('login');
+            return redirect('login')->with('error', 'Las credenciales no coinciden.');
         }
     }
 

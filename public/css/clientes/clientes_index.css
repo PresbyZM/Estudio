@@ -1,0 +1,49 @@
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.btn-hover {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn-hover:hover {
+    transform: translateY(-2px);
+}
+.btn-primary {
+    background-color: #1d9bf0; 
+    border-color: #1d9bf0;
+    color: #fff; 
+}
+.btn-primary:hover {
+    background-color: #137bc2; 
+    border-color: #137bc2;
+}
+.btn-info {
+    background-color: #49ade1; 
+    border-color: #49ade1;
+    color: #fff; 
+}
+.btn-info:hover {
+    background-color: #1f87c7; 
+    border-color: #1f87c7;
+}
+.btn-danger {
+    background-color: #f5365c;
+    border-color: #f5365c;
+    color: #fff; 
+}
+.btn-danger:hover {
+    background-color: #f56036;
+    border-color: #f56036;
+}
+.badge {
+    font-size: 0.9rem;
+}
+.card-text {
+    margin-bottom: 0.5rem; 
+}
+.card-text strong {
+    font-weight: bold; 
+}

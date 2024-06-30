@@ -12,10 +12,17 @@ class ClientesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $clientes = Cliente::latest()->paginate(3);
-        return view('clientes_index', ['clientes' => $clientes]);
+        $query = $request->input('query');
+
+        $clientes = Cliente::when($query, function ($queryBuilder) use ($query) {
+            $queryBuilder->where('nombre_cliente', 'like', "%{$query}%")
+                         ->orWhere('apellidop_cliente', 'like', "%{$query}%")
+                         ->orWhere('apellidom_cliente', 'like', "%{$query}%");
+        })->latest()->paginate();
+    
+        return view('clientes_index', ['clientes' => $clientes, 'query' => $query]);
     }
 
     /**
@@ -40,8 +47,10 @@ class ClientesController extends Controller
             'descripcion_cliente' => 'nullable|string',
 
         ]);
-        Cliente::create($request->all());
-        return redirect()->route('clientes.index')->with('success', 'Nuevo cliente frecuente creado exitosamente');
+        $cliente = Cliente::create($request->all());
+        
+        return redirect()->route('clientes.index')->with('success', 'Nuevo cliente registrado exitosamente');
+
     }
 
     /**
@@ -76,7 +85,7 @@ class ClientesController extends Controller
         ]);
         //dd($request->all());
         $cliente->update($request->all());
-        return redirect()->route('clientes.index')->with('success', 'Nuevo cliente frecuente actualizado exitosamente');
+        return redirect()->route('clientes.index')->with('success', 'Cliente actualizado exitosamente');
 
     }
 
@@ -86,6 +95,6 @@ class ClientesController extends Controller
     public function destroy(Cliente $cliente): RedirectResponse
     {
         $cliente->delete();
-        return redirect()->route('clientes.index')->with('success', 'Cliente frecuente eliminado exitosamente');
+        return redirect()->route('clientes.index')->with('success', 'Cliente eliminado exitosamente');
     }
 }

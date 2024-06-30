@@ -1,6 +1,10 @@
 @extends('layouts.base')
 
 @section('content')
+<br>
+<br>
+<br>
+<br>
 <div class="row">
     <div class="col-12">
         <div>

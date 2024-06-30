@@ -4,62 +4,85 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #2a2f33;
-            color: white;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .form-container {
-            background-color: #495057;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .form-label, .form-check-label, .form-text {
-            color: #adb5bd;
-        }
-        .btn-primary {
-            background-color: #007bff;
-            border: none;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-        .link-light {
-            color: #ffc107;
-        }
-        .link-light:hover {
-            color: #ffdf7e;
-        }
-    </style>
+    <link href="{{ asset('css/auth/login.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <main class="form-container">
-        <form method="POST" action="{{ route('inicia-sesion') }}">
-            @csrf
-            <div class="mb-3">
-                <label for="emailInput" class="form-label">Email</label>
-                <input type="email" class="form-control" id="emailInput" name="email_usuario" required autocomplete="disable">
-            </div>
-            <div class="mb-3">
-                <label for="passwordInput" class="form-label">Password</label>
-                <input type="password" class="form-control" id="passwordInput" name="password" required>
-            </div>
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="rememberCheck" name="remember">
-                <label for="rememberCheck" class="form-check-label">Mantener sesión iniciada</label>
-            </div>
-            <div>
-                <p>¿No tienes cuenta? <a href="{{ route('registro') }}" class="link-light">Regístrate</a></p>
-            </div>
-            <button type="submit" class="btn btn-primary">Acceder</button>
-        </form>
-    </main>
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        width="100%" height="100%" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice">
+        <defs>
+            <linearGradient id="bg">
+                <stop offset="0%" style="stop-color:rgba(130, 158, 249, 0.06)"></stop>
+                <stop offset="50%" style="stop-color:rgba(76, 190, 255, 0.6)"></stop>
+                <stop offset="100%" style="stop-color:rgba(115, 209, 72, 0.2)"></stop>
+            </linearGradient>
+            <path id="wave" fill="url(#bg)" d="M-363.852,502.589c0,0,236.988-41.997,505.475,0
+                s371.981,38.998,575.971,0s293.985-39.278,505.474,5.859s493.475,48.368,716.963-4.995v560.106H-363.852V502.589z" />
+        </defs>
+        <g>
+            <use xlink:href='#wave' opacity=".3">
+                <animateTransform attributeName="transform" attributeType="XML" type="translate" dur="10s"
+                    calcMode="spline" values="270 230; -334 180; 270 230" keyTimes="0; .5; 1"
+                    keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0" repeatCount="indefinite" />
+            </use>
+            <use xlink:href='#wave' opacity=".6">
+                <animateTransform attributeName="transform" attributeType="XML" type="translate" dur="8s"
+                    calcMode="spline" values="-270 230;243 220;-270 230" keyTimes="0; .6; 1"
+                    keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0" repeatCount="indefinite" />
+            </use>
+            <use xlink:href='#wave' opacity=".9">
+                <animateTransform attributeName="transform" attributeType="XML" type="translate" dur="6s"
+                    calcMode="spline" values="0 230;-140 200;0 230" keyTimes="0; .4; 1"
+                    keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0" repeatCount="indefinite" />
+            </use>
+        </g>
+    </svg>
+    <div class="content">
+        <div class="card">
+            <img src="{{ asset('images/logo.jpg') }}" alt="Logo">
+            <h1>Iniciar Sesión</h1>
+            <form method="POST" action="{{ route('inicia-sesion') }}" onsubmit="showLoader()">
+                @csrf
+                <div class="mb-3">
+                    <input type="email" name="email_usuario" placeholder="Correo Electrónico">
+                </div>
+                <div class="mb-3">
+                    <input type="password" name="password" placeholder="Contraseña">
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="remember" id="rememberCheck">
+                    <div class="checkbox-icon"></div>
+                    <span class="checkbox-label">Mantener sesión iniciada</span>
+                </label>
+                <button type="submit">Acceder</button>
+            </form>
+            <a href="{{ route('registro') }}" class="register-link">¿No tienes una cuenta? Regístrate</a>
+        </div>
+    </div>
+
+    <script>
+        @if(session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: '¡Error!',
+                text: '{{ session('error') }}'
+            });
+        @endif
+    </script>
+
+    <div class="loader" id="loader">
+        <img src="{{ asset('images/camara.png') }}" alt="Cámara Fotográfica Girando">
+    </div>
+
+    <script>
+        function showLoader() {
+            document.getElementById('loader').style.display = 'flex';
+        }
+
+        function hideLoader() {
+            document.getElementById('loader').style.display = 'none';
+        }
+    </script>
 </body>
 </html>
-

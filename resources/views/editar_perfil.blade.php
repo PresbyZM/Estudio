@@ -115,21 +115,6 @@
     </div>
 </div>
 
-<style>
-    .profile-icon {
-        width: 150px;
-        height: 150px;
-        top: -75px; 
-        overflow: hidden;
-    }
-
-    .profile-icon img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-</style>
-
 <script>
     function togglePassword(id) {
         var input = document.getElementById(id);

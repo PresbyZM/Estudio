@@ -7,43 +7,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .card {
-            border-radius: 10px;
-        }
-        .card-header {
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            background-color: #0c5db4; 
-            color: white; 
-            text-align: center;
-            font-size: 1.5rem; 
-            border: none; 
-        }
-        .table {
-            margin-bottom: 0;
-        }
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-        .card-title {
-            font-size: 1.5rem; 
-            margin-bottom: 0.5rem;
-        }
-        .chart-container {
-            position: relative;
-            height: 300px;
-        }
-        .thead-blue {
-            background-color: #0056b3; 
-            color: white; 
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/formularios/ingresos.css') }}">
     <div class="container mt-5">
         <div class="row mb-4">
             <div class="col-6">

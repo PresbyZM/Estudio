@@ -75,11 +75,11 @@
         @keyframes color-change {
             0%, 100% {
                 transform: translateX(-100%);
-                color: #fff; /* Blanco */
+                color: #fff; 
             }
             50% {
                 transform: translateX(0);
-                color: #add8e6; /* Celeste */
+                color: #add8e6; 
             }
         }
 

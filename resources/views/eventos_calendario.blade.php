@@ -1,71 +1,122 @@
 @extends('layouts.base')
+<br>
+<br>
+<br>
 
 @section('content')
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+<link rel="stylesheet" href="{{ asset('css/formularios/index.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
-    body{
-        position: absolute;
-        transform: translate(-50%, -50%);
-        top: 50%;
-        left: 50%;
-    }
-
-    .container {
-        height: 450px;
-        width: 300px;
-        box-shadow: 0 10px 20px #000;
-        background-size: cover;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        overflow: hidden;
-        font-family: sans-serif;
-    }
-
-    .shape {
-        background-color: #002244;
-        height: 250px;
-        width: 400px;
-        margin-left: -20px;
-        position: relative;
-        top: -80px;
-        box-shadow: 0 2px 15px #000;
-        transform: rotate(25deg);
-    }
-
-    .image {
-        height: 100px;
-        width: 100px;
-        background-image: url();
-        position: relative;
-        top: 200px;
-        margin-left: 170px;
-        background-size: cover;
-        border: none;
-        border-radius: 50%;
-        box-shadow: 0 2px 15px rgb(58, 54, 54);
-        transform: rotate(-20deg);
-    }
-</style>
-
-<div class="container">
-    <div class="shape">
-        <div class="image"></div>
+<div class="container animate__animated animate__fadeIn">
+    <div class="calendar">
+        <div class="calendar-header">
+            <button id="prevMonth" class="btn btn-primary btn-hover">‹</button>
+            <span class="calendar-month" id="calendarMonthYear"></span>
+            <button id="nextMonth" class="btn btn-primary btn-hover">›</button>
+            <a href="{{ route('eventos.index') }}" class="nav-link calendar-events-link" onclick="showLoader()">
+                <i class="bx bx-calendar icon"></i>
+                <span class="link">Eventos</span>
+            </a>
+        </div>
+        <div id="calendarBody" class="calendar-body"></div>
     </div>
-    <h3>Jose Zuñiga</h3>
-    <h4 class="title">Diseñador</h4>
-    <p>
-        Male
-        <br>
-        14-sep-1990
-        <br>
-        @josezuñiga
-    </p>
 </div>
+
+<!-- Modal for event details -->
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eventModalLabel">Detalles del Evento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="eventModalBody">
+                <!-- Event details will be populated here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const calendarEl = document.getElementById('calendarBody');
+        const calendarMonthYear = document.getElementById('calendarMonthYear');
+        const events = @json($events); // Asumiendo que $events es un array de eventos
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+
+        function createCalendar(month, year) {
+            let firstDay = new Date(year, month, 1);
+            let lastDay = new Date(year, month + 1, 0);
+
+            let days = [];
+            for (let i = 1; i <= lastDay.getDate(); i++) {
+                days.push(i);
+            }
+
+            // Update calendar header
+            calendarMonthYear.innerText = `${firstDay.toLocaleString('es-ES', { month: 'long' })} ${year}`;
+
+            // Create calendar HTML
+            let html = `<div class="calendar-days">
+                            ${days.map(day => {
+                                let dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                                let dayEvents = events.filter(e => e.start === dateStr);
+                                return `<div class="calendar-day" data-date="${dateStr}" ${dayEvents.length > 0 ? 'style="background-color: #d0e6f9;"' : ''}>
+                                            ${day}
+                                            ${dayEvents.length > 0 ? `<div class="event-icon"><img src="{{ asset('images/camara.png') }}" alt="Camera"></div>` : ''}
+                                        </div>`;
+                            }).join('')}
+                        </div>`;
+
+            calendarEl.innerHTML = html;
+
+            // Add event listeners
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                day.addEventListener('click', function() {
+                    let date = this.getAttribute('data-date');
+                    let dayEvents = events.filter(e => e.start === date);
+
+                    if (dayEvents.length > 0) {
+                        let eventHtml = dayEvents.map(event => `
+                            <div class="event-detail">
+                                <p><strong>Nombre:</strong> ${event.title}</p>
+                                <p><strong>Descripción:</strong> ${event.description}</p>
+                                <p><strong>Cliente:</strong> ${event.client_name}</p>
+                                <p><strong>Teléfono:</strong> ${event.client_phone}</p>
+                                <p><strong>Precio:</strong> ${event.price}</p>
+                                <p><strong>Anticipo:</strong> ${event.anticipo}</p>
+                                <p><strong>Resto:</strong> ${event.resto}</p>
+                                <hr>
+                            </div>
+                        `).join('');
+
+                        document.getElementById('eventModalBody').innerHTML = eventHtml;
+
+                        var eventModal = new bootstrap.Modal(document.getElementById('eventModal'));
+                        eventModal.show();
+                    }
+                });
+            });
+        }
+
+        document.getElementById('prevMonth').addEventListener('click', function() {
+            currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
+            currentYear = (currentMonth === 11) ? currentYear - 1 : currentYear;
+            createCalendar(currentMonth, currentYear);
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', function() {
+            currentMonth = (currentMonth === 11) ? 0 : currentMonth + 1;
+            currentYear = (currentMonth === 0) ? currentYear + 1 : currentYear;
+            createCalendar(currentMonth, currentYear);
+        });
+
+        createCalendar(currentMonth, currentYear);
+    });
+</script>
 
 @endsection

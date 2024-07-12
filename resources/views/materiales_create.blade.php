@@ -1,55 +1,76 @@
 @extends('layouts.base')
 
 @section('content')
-<div class="row">
-    <div class="col-12">
-        <div>
-            <h2>CREAR MATERIAL</h2>
-        </div>
-        <div>
-            <a href="{{route('materiales.index')}}" class="btn btn-primary">Volver</a>
-        </div>
-    </div>
-    
-    @if ($errors->any())
-    <div class="alert alert-danger mt-4">
-        <strong>Por las chancas de mi madre!</strong> Algo fue mal..<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
+<link rel="stylesheet" href="{{ asset('css/formularios/create.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<br>
 
-    <form id="materialForm" action="{{route('materiales.store')}}" method="POST">
-        @csrf
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
-                <div class="form-group">
-                    <strong>Nombre:</strong>
-                    <input type="text" name="nombre_material" class="form-control" placeholder="Material">
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
-                    <div class="form-group">
-                        <strong>Descripción:</strong>
-                        <textarea class="form-control" style="height:150px" name="descripcion_material" placeholder="Descripción..."></textarea>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6"> 
+            <div class="card border-0 shadow-lg">
+                <div class="card-body p-3"> 
+                    <div class="text-center mb-2"> 
+                        <h2 class="text-dark-blue animate__animated animate__fadeInDown">Crear Material</h2>
                     </div>
+                    <div class="text-end mb-2"> 
+                        <a href="{{ route('materiales.index') }}" class="btn btn-outline-primary btn-sm animate__animated animate__fadeInLeft" onclick="showLoader()">Volver</a>
+                    </div>
+
+                    <form id="materialForm" action="{{ route('materiales.store') }}" method="POST" class="animate__animated animate__fadeInUp" onsubmit="showLoader()">
+                        @csrf
+                        <div class="row mb-2">
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="text" name="nombre_material" class="form-control form-control-lg @error('nombre_material') is-invalid @enderror" placeholder=" " id="nombre_material" value="{{ old('nombre_material') }}">
+                                    <label for="nombre_material" class="text-dark-blue"><strong>Nombre</strong></label>
+                                    @error('nombre_material')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2"> 
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control form-control-lg @error('descripcion_material') is-invalid @enderror" style="height:150px" name="descripcion_material" placeholder=" " id="descripcion_material">{{ old('descripcion_material') }}</textarea>
+                                    <label for="descripcion_material" class="text-dark-blue"><strong>Descripción</strong></label>
+                                    @error('descripcion_material')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2"> 
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" name="cantidad_max" class="form-control form-control-lg @error('cantidad_max') is-invalid @enderror" placeholder=" " id="cantidad_max" value="{{ old('cantidad_max') }}">
+                                    <label for="cantidad_max" class="text-dark-blue"><strong>Cantidad máxima en inventario</strong></label>
+                                    @error('cantidad_max')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" name="cantidad_actual" class="form-control form-control-lg @error('cantidad_actual') is-invalid @enderror" placeholder=" " id="cantidad_actual" value="{{ old('cantidad_actual') }}">
+                                    <label for="cantidad_actual" class="text-dark-blue"><strong>Cantidad actual</strong></label>
+                                    @error('cantidad_actual')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2"> 
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-lg animate__animated animate__pulse animate__infinite">Crear</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <strong>Cantidad maxima en inventario:</strong>
-                    <input type="text" name="cantidad_max" class="form-control" placeholder="Cantidad maxima">
-                </div>
-                <div class="form-group">
-                    <strong>Cantidad:</strong>
-                    <input type="text" name="cantidad_actual" class="form-control" placeholder="Cantidad actual">
-                </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2">
-                <button type="submit" class="btn btn-primary">Crear</button>
             </div>
         </div>
-    </form>
-</div>
+    </div>
 </div>
 
 <style>
@@ -62,21 +83,65 @@
         0%, 100% { border-color: red; }
         50% { border-color: white; }
     }
+
+    .btn-primary {
+        background-color: #1a3b6c; /* Color más oscuro para el botón */
+        border-color: #1a3b6c; /* Color de borde correspondiente */
+    }
 </style>
 
 <script>
-document.getElementById('materialForm').addEventListener('submit', function(event) {
-    var cantidadActual = parseFloat(document.querySelector('input[name="cantidad_actual"]').value) || 0;
-    var cantidadMax = parseFloat(document.querySelector('input[name="cantidad_max"]').value) || 0;
+document.addEventListener('DOMContentLoaded', function() {
+    var cantidadMaxInput = document.querySelector('input[name="cantidad_max"]');
+    var cantidadActualInput = document.querySelector('input[name="cantidad_actual"]');
 
-    if (cantidadActual > cantidadMax) {
-        alert('La cantidad actual no puede ser mayor que la cantidad máxima.');
-        document.querySelector('input[name="cantidad_actual"]').classList.add('flash');
-        event.preventDefault();
-        setTimeout(() => {
-            document.querySelector('input[name="cantidad_actual"]').classList.remove('flash');
-        }, 2500); // Remover la clase después de 2.5 segundos
-    }
+    cantidadActualInput.addEventListener('input', function() {
+        // Eliminar caracteres no numéricos excepto el punto decimal
+        this.value = this.value.replace(/[^0-9.]/g, '');
+        
+        var cantidadActual = parseFloat(cantidadActualInput.value) || 0;
+        var cantidadMax = parseFloat(cantidadMaxInput.value) || 0;
+
+        if (cantidadActual > cantidadMax) {
+            cantidadActualInput.value = cantidadMax;
+            cantidadActualInput.classList.add('flash');
+            setTimeout(() => {
+                cantidadActualInput.classList.remove('flash');
+            }, 2500); // Remover la clase después de 2.5 segundos
+        }
+
+        if (cantidadActual < 0) {
+            cantidadActualInput.value = 0;
+            cantidadActualInput.classList.add('flash');
+            setTimeout(() => {
+                cantidadActualInput.classList.remove('flash');
+            }, 2500); // Remover la clase después de 2.5 segundos
+        }
+    });
+
+    cantidadMaxInput.addEventListener('input', function() {
+        // Eliminar caracteres no numéricos excepto el punto decimal
+        this.value = this.value.replace(/[^0-9.]/g, '');
+        
+        var cantidadActual = parseFloat(cantidadActualInput.value) || 0;
+        var cantidadMax = parseFloat(cantidadMaxInput.value) || 0;
+
+        if (cantidadActual > cantidadMax) {
+            cantidadActualInput.value = cantidadMax;
+            cantidadActualInput.classList.add('flash');
+            setTimeout(() => {
+                cantidadActualInput.classList.remove('flash');
+            }, 2500); // Remover la clase después de 2.5 segundos
+        }
+
+        if (cantidadMax < 0) {
+            cantidadMaxInput.value = 0;
+            cantidadMaxInput.classList.add('flash');
+            setTimeout(() => {
+                cantidadMaxInput.classList.remove('flash');
+            }, 2500); // Remover la clase después de 2.5 segundos
+        }
+    });
 });
 </script>
 

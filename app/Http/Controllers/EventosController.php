@@ -13,13 +13,16 @@ class EventosController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        
-        $eventos = Evento::with('cliente')->latest()->paginate(3);
-        return view('eventos_index', ['eventos' => $eventos]);
-    }
+        $fechaEvento = $request->input('fecha_evento');
 
+        $eventos = Evento::when($fechaEvento, function ($query) use ($fechaEvento) {
+            $query->whereDate('dia_evento', $fechaEvento);
+        })->latest()->paginate(9);
+
+        return view('eventos_index', compact('eventos', 'fechaEvento'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -37,11 +40,11 @@ class EventosController extends Controller
         $request->validate([
             'nombre_evento' => 'required|string|max:30',
             'dia_evento' => 'required|date',
-            'precio_evento' => 'nullable|numeric',
+            'precio_evento' => 'required|numeric',
             'descuento' => 'nullable|numeric',
-            'anticipo' => 'nullable|numeric',
-            'resto' => 'nullable|numeric',
-            'descripcion_evento' => 'nullable|string|max:50',
+            'anticipo' => 'required|numeric',
+            'resto' => 'required|numeric',
+            'descripcion_evento' => 'required|string',
             'estatus' => 'required|string|max:50',
             'cliente_id' => 'required|exists:clientes,id',
         ]);
@@ -109,5 +112,29 @@ class EventosController extends Controller
     {
         $evento->delete();
         return redirect()->route('eventos.index')->with('success', 'Evento eliminado exitosamente');
+    }
+
+    public function eventos_calendario(): View
+    {
+        $eventos = Evento::all();
+    
+        // Prepara los eventos en el formato que necesita FullCalendar
+        $events = $eventos->map(function ($evento) {
+            return [
+                'title' => $evento->nombre_evento,
+                'start' => $evento->dia_evento, // Imprime la fecha tal como está en la BD
+                'description' => $evento->descripcion_evento,
+                'client_name' => $evento->cliente ? $evento->cliente->nombre_cliente : 'N/A',
+                'client_phone' => $evento->cliente ? $evento->cliente->telefono_cliente : 'N/A',
+                'price' => $evento->precio_evento,
+                'anticipo' => $evento->anticipo,
+                'resto' => $evento->resto,
+            ];
+        });
+    
+        // Imprimir el contenido de $events para verificar el formato
+        
+    
+        return view('eventos_calendario', ['events' => $events]);
     }
 }

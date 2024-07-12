@@ -1,0 +1,188 @@
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.btn-hover {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn-hover:hover {
+    transform: translateY(-2px);
+}
+.btn-primary {
+    background-color: #1d9bf0; 
+    border-color: #1d9bf0;
+    color: #fff; 
+}
+.btn-primary:hover {
+    background-color: #137bc2; 
+    border-color: #137bc2;
+}
+.btn-info {
+    background-color: #49ade1; 
+    border-color: #49ade1;
+    color: #fff; 
+}
+.btn-info:hover {
+    background-color: #1f87c7; 
+    border-color: #1f87c7;
+}
+.btn-danger {
+    background-color: #f5365c;
+    border-color: #f5365c;
+    color: #fff; 
+}
+.btn-danger:hover {
+    background-color: #f56036;
+    border-color: #f56036;
+}
+.badge {
+    font-size: 0.9rem;
+}
+.card-text {
+    margin-bottom: 0.5rem; 
+}
+.card-text strong {
+    font-weight: bold; 
+}
+
+.search-btn:hover {
+    background-color: #137bc2;
+    border-color: #137bc2;
+    transform: translateY(-2px);
+}
+
+
+
+/* Estilo del contenedor del calendario */
+.calendar {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    position: relative;
+}
+
+/* Encabezado del calendario */
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.calendar-month {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0 20px;
+}
+
+/* Botones de cambio de mes */
+#prevMonth, #nextMonth {
+    background-color: #1873af; /* Azul */
+    border-color: #1873af;
+    color: #fff;
+    padding: 10px;
+}
+
+#prevMonth:hover, #nextMonth:hover {
+    background-color: #137bc2; /* Azul oscuro */
+    border-color: #137bc2;
+}
+
+/* Botón de eventos */
+.calendar-events-link {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #1d9bf0;
+    color: #fff;
+    border-radius: 4px;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.calendar-events-link .icon {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.calendar-events-link:hover {
+    background-color: #137bc2;
+}
+
+/* Cuerpo del calendario */
+.calendar-body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Días del calendario */
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendar-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s;
+}
+
+.calendar-day:hover {
+    background-color: #f0f0f0;
+}
+
+/* Icono de evento */
+.event-icon {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.event-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Modal */
+.modal-content {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.modal-header {
+    background-color: #003b6f; /* Azul oscuro */
+    color: #fff;
+    text-align: center;
+}
+
+.modal-title {
+    margin: 0;
+}
+
+.modal-body p {
+    margin-bottom: 0.5em;
+}
+
+.event-detail {
+    margin-bottom: 10px;
+}
+
+.event-detail hr {
+    margin: 10px 0;
+}

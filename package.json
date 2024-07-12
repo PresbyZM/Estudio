@@ -11,6 +11,10 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "@fullcalendar/bootstrap": "^6.1.14",
+        "@fullcalendar/core": "^6.1.14",
+        "@fullcalendar/daygrid": "^6.1.14",
+        "@fullcalendar/interaction": "^6.1.14",
         "bootstrap": "^5.3.3",
         "flatpickr": "^4.6.13"
     }

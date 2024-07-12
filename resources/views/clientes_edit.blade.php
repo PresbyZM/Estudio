@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/clientes/clientes_create.css') }}">
+<link rel="stylesheet" href="{{ asset('css/formularios/create.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <br>
 <br>

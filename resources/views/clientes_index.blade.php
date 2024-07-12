@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/clientes/clientes_index.css') }}">
+<link rel="stylesheet" href="{{ asset('css/formularios/index.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
 <br>
@@ -11,7 +11,7 @@
     <div class="row mb-4">
         <div class="col-12 d-flex justify-content-between align-items-center">
             <h2 class="text-white">CLIENTES FRECUENTES</h2>
-            <a href="{{ route('clientes.create') }}" class="btn btn-primary" onclick="showLoader()">Crear cliente</a>
+            <a href="{{ route('clientes.create') }}" class="btn btn-primary btn-hover" onclick="showLoader()">Registrar cliente</a>
         </div>
     </div>
 

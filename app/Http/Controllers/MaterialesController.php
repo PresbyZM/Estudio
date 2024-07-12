@@ -32,14 +32,16 @@ class MaterialesController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-
-            
-
+            'nombre_material' => 'required|string|max:255',
+            'descripcion_material' => 'required|string',
+            'cantidad_max' => 'required|integer|min:0',
+            'cantidad_actual' => 'required|integer|min:0',
         ]);
+    
         Material::create($request->all());
-        return redirect()->route('materiales.index')->with('success', 'Nuevo material creado exitosamente');
+    
+        return redirect()->route('materiales.index')->with('success', 'Nuevo material registrado exitosamente');
     }
-
     /**
      * Display the specified resource.
      */
@@ -62,25 +64,39 @@ class MaterialesController extends Controller
     public function update(Request $request, Material $material): RedirectResponse
     {
         $request->validate([
-
-        
-
+            'nombre_material' => 'required|string|max:255',
+            'descripcion_material' => 'required|string',
+            'cantidad_max' => 'required|integer|min:0',
+            'cantidad_actual' => 'required|integer|min:0',
         ]);
-
-        $cantidadAgregar = $request->input('cantidad_agregar');
+    
+        $cantidadCambio = $request->input('cantidad_cambio');
+        $accion = $request->input('accion');
         $cantidadActual = $material->cantidad_actual;
         $cantidadMaxima = $material->cantidad_max;
-        
-        //dd($request->all());
+    
+        if ($accion === 'agregar') {
+            $nuevaCantidad = $cantidadActual + $cantidadCambio;
+            if ($nuevaCantidad > $cantidadMaxima) {
+                return redirect()->route('materiales.edit', $material)->withErrors(['cantidad_cambio' => 'La cantidad nueva excede la cantidad máxima permitida.']);
+            }
+        } else if ($accion === 'quitar') {
+            $nuevaCantidad = $cantidadActual - $cantidadCambio;
+            if ($nuevaCantidad < 0) {
+                return redirect()->route('materiales.edit', $material)->withErrors(['cantidad_cambio' => 'La cantidad no puede ser negativa.']);
+            }
+        }
+    
         $material->update([
             'nombre_material' => $request->input('nombre_material'),
             'descripcion_material' => $request->input('descripcion_material'),
-            'cantidad_actual' => $cantidadActual + $cantidadAgregar,
+            'cantidad_actual' => $nuevaCantidad,
             'cantidad_max' => $request->input('cantidad_max'),
         ]);
+    
         return redirect()->route('materiales.index')->with('success', 'Material actualizado exitosamente');
-
     }
+    
 
     /**
      * Remove the specified resource from storage.

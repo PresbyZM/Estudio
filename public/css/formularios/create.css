@@ -55,3 +55,7 @@
     color: #004080; 
 }
 
+select.small-text {
+    font-size: 0.875rem; 
+}
+

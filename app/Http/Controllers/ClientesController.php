@@ -40,11 +40,11 @@ class ClientesController extends Controller
     {
         $request->validate([
 
-            'nombre_cliente' => 'required|string|max:255',
-            'apellidom_cliente' => 'required|string|max:255',
-            'apellidop_cliente' => 'required|string|max:255',
-            'telefono_cliente' => 'required|string|max:255',
-            'descripcion_cliente' => 'nullable|string',
+            'nombre_cliente' => 'required|string|max:30',
+            'apellidom_cliente' => 'required|string|max:30',
+            'apellidop_cliente' => 'required|string|max:30',
+            'telefono_cliente' => 'required|string|max:15',
+            'descripcion_cliente' => 'nullable|string|max:300',
 
         ]);
         $cliente = Cliente::create($request->all());
@@ -76,11 +76,11 @@ class ClientesController extends Controller
     {
         $request->validate([
 
-            'nombre_cliente' => 'required|string|max:255',
-            'apellidom_cliente' => 'required|string|max:255',
-            'apellidop_cliente' => 'required|string|max:255',
-            'telefono_cliente' => 'required|string|max:255',
-            'descripcion_cliente' => 'nullable|string',
+            'nombre_cliente' => 'required|string|max:30',
+            'apellidom_cliente' => 'required|string|max:30',
+            'apellidop_cliente' => 'required|string|max:30',
+            'telefono_cliente' => 'required|string|max:15',
+            'descripcion_cliente' => 'nullable|string|max:300',
 
         ]);
         //dd($request->all());

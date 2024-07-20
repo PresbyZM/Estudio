@@ -16,14 +16,25 @@ class PerfilController extends Controller
 
     public function update(Request $request)
     {
+
         // Validar los datos del formulario
         $request->validate([
             'nombre_usuario' => 'required|string|max:30',
-            'apellidop_usuario' => 'nullable|string|max:30',
-            'apellidom_usuario' => 'nullable|string|max:30',
-            'email_usuario' => 'required|string|email|max:30|unique:usuarios,email_usuario,' . auth()->id(),
-            'current_password' => 'required|string',
-            'password' => 'nullable|string|min:8|confirmed',
+            'apellidop_usuario' => 'required|string|max:30',
+            'apellidom_usuario' => 'required|string|max:30',
+            'email_usuario' => 'required|string|email|max:50|unique:usuarios,email_usuario,' . auth()->id(),
+            'current_password' => 'required|string|max:20',
+            'password' => [
+                'nullable',
+                'string',
+                'min:8', // 3.3 Longitud mínima de 8 caracteres
+                'max:20', // 3.3 Longitud mínima de 8 caracteres
+                'regex:/[a-z]/', // 3.1 Contiene letras minúsculas
+                'regex:/[A-Z]/', // 3.1 Contiene letras mayúsculas
+                'regex:/[0-9]/', // 3.2 Contiene números
+                'regex:/[@$!%*?&#]/', // 3.2 Contiene signos especiales
+                
+            ],
         ]);
 
         $user = User::find(auth()->id());

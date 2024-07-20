@@ -42,8 +42,8 @@ svg {
     background: white;
     border-radius: 12px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    padding: 40px;
-    width: 360px;
+    padding: 45px;
+    width: 320px;
     text-align: center;
     margin: auto;
     margin-top: 20px;
@@ -53,11 +53,11 @@ svg {
 
 .card input {
     width: calc(100% - 20px);
-    padding: 12px;
-    margin-bottom: 20px;
+    padding: 10px;
+    margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 14px;
     transition: all 0.3s ease;
 }
 
@@ -73,15 +73,15 @@ svg {
 
 .card button {
     width: calc(100% - 20px);
-    padding: 12px;
+    padding: 10px;
     background-color: #2575fc;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     transition: background-color 0.3s ease;
-    margin-bottom: -100px; 
+    margin-bottom: -90px; 
 }
 
 .card button:hover {
@@ -90,7 +90,7 @@ svg {
 
 .form-label {
     color: #333;
-    font-size: 16px;
+    font-size: 14px;
     text-align: left;
     display: block;
     margin-bottom: 6px;
@@ -98,8 +98,8 @@ svg {
 
 .form-control {
     width: calc(100% - 20px);
-    padding: 10px;
-    font-size: 14px;
+    padding: 8px;
+    font-size: 12px;
     border: 1px solid #ddd;
     border-radius: 8px;
     transition: all 0.3s ease;
@@ -112,13 +112,13 @@ svg {
 
 .btn {
     width: calc(100% - 20px);
-    padding: 12px;
+    padding: 10px;
     background-color: #2575fc;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     transition: background-color 0.3s ease;
 }
 
@@ -129,14 +129,14 @@ svg {
 .logo {
     position: relative;
     margin: 0 auto -10px auto;
-    margin-top: -40px; 
-    width: 100px; 
+    margin-top: -30px; 
+    width: 80px; 
     height: auto;
     display: block; 
 }
 
 .card-title {
-    font-size: 24px;  
+    font-size: 20px;  
     color: #333; 
     margin-top: 5px; 
     margin-bottom: 15px; 
@@ -166,4 +166,128 @@ svg {
     100% {
         transform: rotate(360deg);
     }
+}
+
+/* Estilos para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 80%; /* Ancho del modal */
+    max-width: 600px; /* Máximo ancho del modal */
+    position: relative; /* Posicionamiento relativo para el botón de cerrar */
+    margin: auto; /* Centra el contenido del modal */
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 24px;
+    text-align: center;
+}
+
+.modal-content p {
+    margin: 10px 0;
+}
+
+.modal-content ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.privacy-link {
+    color: #007bff;
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.privacy-link:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para el checkbox personalizado */
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.custom-checkbox input {
+    display: none;
+}
+
+.checkbox-icon {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    position: relative;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    margin-right: 10px;
+}
+
+.custom-checkbox input:checked + .checkbox-icon {
+    background-color: #2575fc;
+    border-color: #2575fc;
+}
+
+.checkbox-icon::after {
+    content: '\2714'; /* Marca de verificación */
+    font-size: 14px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.custom-checkbox input:checked + .checkbox-icon::after {
+    opacity: 1;
+}
+
+.checkbox-label {
+    font-size: 12px;
+    color: #333;
+}
+
+.password-container {
+    position: relative;
+}
+
+#togglePassword {
+    z-index: 1;
 }

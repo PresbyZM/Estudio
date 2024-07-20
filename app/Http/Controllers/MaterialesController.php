@@ -14,7 +14,7 @@ class MaterialesController extends Controller
      */
     public function index(): View
     {
-        $materiales = Material::latest()->paginate(3);
+        $materiales = Material::latest()->paginate(15);
         return view('materiales_index', ['materiales' => $materiales]);
     }
 
@@ -32,8 +32,8 @@ class MaterialesController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'nombre_material' => 'required|string|max:255',
-            'descripcion_material' => 'required|string',
+            'nombre_material' => 'required|string|max:30',
+            'descripcion_material' => 'required|string|max:300',
             'cantidad_max' => 'required|integer|min:0',
             'cantidad_actual' => 'required|integer|min:0',
         ]);
@@ -64,8 +64,8 @@ class MaterialesController extends Controller
     public function update(Request $request, Material $material): RedirectResponse
     {
         $request->validate([
-            'nombre_material' => 'required|string|max:255',
-            'descripcion_material' => 'required|string',
+            'nombre_material' => 'required|string|max:30',
+            'descripcion_material' => 'required|string|max:300',
             'cantidad_max' => 'required|integer|min:0',
             'cantidad_actual' => 'required|integer|min:0',
         ]);

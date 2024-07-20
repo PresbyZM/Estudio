@@ -7,20 +7,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="{{ asset('css/formularios/ingresos.css') }}">
     <div class="container mt-5">
-        <div class="row mb-4">
+        <div class="row mb-4 animate__animated animate__fadeIn"">
             <div class="col-6">
                 <h2 style="color: white;">Ingresos Mensuales</h2>
             </div>
             <div class="col-6 text-end">
-                <a href="{{ route('ingresos.exportPdf', ['month' => $month, 'year' => $year]) }}" class="btn btn-primary" onclick="showLoader()">
-                    <i class="fas fa-file-pdf"></i> Exportar PDF
+                <a href="{{ route('ingresos.exportPdf', ['month' => $month, 'year' => $year]) }}" class="btn btn-primary">
+                    <i class="fas fa-file-pdf animate__animated animate__fadeIn""></i> Exportar PDF
                 </a>
             </div>
         </div>
 
-        <form method="GET" action="{{ route('ingresos.index') }}" class="mb-4 row gx-3 align-items-end">
+        <form method="GET" action="{{ route('ingresos.index') }}" class="mb-4 row gx-3 align-items-end animate__animated animate__fadeIn" onsubmit="showLoader()">
             <div class="col-auto">
                 <label for="month" class="sr-only">Mes:</label>
                 <select name="month" id="month" class="form-control">
@@ -42,7 +43,7 @@
             </div>
         </form>
 
-        <div class="row">
+        <div class="row animate__animated animate__fadeIn"">
             <div class="col-md-6 mb-4">
                 <div class="card shadow-sm border-0 h-100">
                     <div class="card-header">
@@ -68,7 +69,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row animate__animated animate__fadeIn">
             <div class="col-12 mb-4">
                 <div class="card shadow-sm border-0">
                     <div class="card-header">

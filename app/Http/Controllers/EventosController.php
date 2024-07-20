@@ -19,7 +19,7 @@ class EventosController extends Controller
 
         $eventos = Evento::when($fechaEvento, function ($query) use ($fechaEvento) {
             $query->whereDate('dia_evento', $fechaEvento);
-        })->latest()->paginate(9);
+        })->latest()->paginate(15);
 
         return view('eventos_index', compact('eventos', 'fechaEvento'));
     }
@@ -44,7 +44,7 @@ class EventosController extends Controller
             'descuento' => 'nullable|numeric',
             'anticipo' => 'required|numeric',
             'resto' => 'required|numeric',
-            'descripcion_evento' => 'required|string',
+            'descripcion_evento' => 'required|string|max:300',
             'estatus' => 'required|string|max:50',
             'cliente_id' => 'required|exists:clientes,id',
         ]);

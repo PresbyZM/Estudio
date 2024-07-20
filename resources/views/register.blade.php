@@ -6,6 +6,7 @@
     <title>Registro</title>
     <link href="{{ asset('css/auth/registro.css') }}" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
 </head>
 <body>
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -38,7 +39,7 @@
         </g>
     </svg>
 
-    <main class="form-container">
+    <main class="form-container animate__animated animate__fadeIn"">
         <form id="registroForm" method="POST" action="{{ route('validar-registro') }}">
             @csrf
             <div class="card">
@@ -64,15 +65,54 @@
                     <label for="apellidopInput" class="form-label">Apellido Paterno</label>
                     <input type="text" class="form-control" id="apellidopInput" name="apellidop_usuario">
                 </div>
+                <div class="custom-checkbox">
+                    <input type="checkbox" id="privacyCheckbox">
+                    <label for="privacyCheckbox" class="checkbox-icon"></label>
+                    <label for="privacyCheckbox" class="checkbox-label">Acepto el aviso de privacidad</label>
+                </div>                
+                <a href="#" id="showModal" class="privacy-link">Aviso de Privacidad</a>
+                <br>
                 <button type="submit" id="registroBtn" class="btn btn-primary">Registrarse</button>
             </div>
         </form>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <div id="loader" class="loader">
+        <img src="{{ asset('images/camara.png') }}" alt="Cámara Fotográfica Girando">
+    </div>
+
+    <div id="privacyModal" class="modal animate__animated animate__fadeIn"">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Aviso de Privacidad</h2>
+            <p>La empresa responsable de tratar tus datos personales es el estudio fotografico "Foto y video Calvario", con domicilio en calle Constitucion #16, el Calvario, Ixmiquilpan, Hidalgo con codigo postal 42303. Puedes contactarnos al correo electrónico photocalvario@gmail.com o al número telefónico 7721047611.</p>
+            <p>Recopilamos los siguientes datos personales: nombre completo y dirección de correo electrónico, tus datos personales serán utilizados para las siguientes finalidades:</p>
+            <ul>
+                <li>Gestionar tu cuenta de usuario y proporcionarte acceso a nuestros servicios.</li>
+                <li>Notificaciones sobre nuestros productos y servicios.</li>
+                <li>Mejorar nuestra plataforma y personalizar la experiencia de usuario.</li>
+                <li>Cumplir con las obligaciones legales y regulatorias aplicables.</li>
+            </ul>
+            <p>Tienes el derecho a oponerte al uso de tus datos personales para fines específicos. Para ejercer este derecho, puedes ponerte en contacto con nosotros a través de photocalvario@gmail.com, indicando claramente los fines para los que deseas que no se utilicen tus datos.</p>
+            <p>No compartiremos tus datos personales con terceros sin tu consentimiento, excepto en los casos en que sea necesario para cumplir con obligaciones legales, para proporcionarte nuestros servicios, o en casos específicos que te serán informados oportunamente.</p>
+            <p>Tienes el derecho a acceder, rectificar, cancelar u oponerte al tratamiento de tus datos personales (derechos ARCO). Para ejercer estos derechos, por favor envíanos una solicitud a photocalvario@gmail.com, especificando el derecho que deseas ejercer y proporcionando la información necesaria para procesar tu solicitud.</p>
+            <p>Puedes solicitar la limitación del uso de tus datos personales. Para ello, contacta con nosotros a través de photocalvario@gmail.com indicando claramente qué datos deseas limitar y las razones para hacerlo.</p>
+            <p>Recogemos tus datos personales a través de los formularios que llenas en nuestra plataforma. También podemos utilizar cookies para mejorar tu experiencia en nuestro sitio web, tales como recordar tus preferencias y ofrecerte contenido personalizado. Puedes configurar tu navegador para rechazar las cookies, pero ten en cuenta que esto podría afectar la funcionalidad de nuestro sitio web.</p>
+            <p>Nos reservamos el derecho de realizar modificaciones al presente Aviso de Privacidad. Cualquier cambio será publicado en nuestra plataforma y te informaremos de manera oportuna. Te recomendamos revisar periódicamente este aviso para estar al tanto de cualquier actualización.</p>
+            <p>Fecha de última actualización: 14 de julio del 2024</p>
+        </div>
+    </div>
+
     <script>
         document.getElementById('registroForm').addEventListener('submit', function(event) {
             event.preventDefault();
+
+            // Validación del checkbox
+            if (!document.getElementById('privacyCheckbox').checked) {
+                Swal.fire('Error', 'Debes aceptar el aviso de privacidad para registrarte.', 'error');
+                return;
+            }
+
             let isValid = true;
             let email = document.getElementById('emailInput').value;
             let password = document.getElementById('passwordInput').value;
@@ -86,9 +126,12 @@
             } else if (!validateEmail(email)) {
                 isValid = false;
                 Swal.fire('Error', 'El formato del correo electrónico no es válido.', 'error');
-            } else if (!password || password.length < 8) {
+            } else if (!isValidPassword(password)) {
                 isValid = false;
-                Swal.fire('Error', 'La contraseña debe tener al menos 8 caracteres.', 'error');
+                Swal.fire('Error', 'La contraseña debe cumplir con los siguientes criterios:\n' +
+                                    'Contener letras mayúsculas y minúsculas,\n' +
+                                    'Contener números y signos especiales,\n' +
+                                    'Tener al menos 8 caracteres de longitud.', 'error');
             } else if (!nombre) {
                 isValid = false;
                 Swal.fire('Error', 'Por favor, ingrese su nombre.', 'error');
@@ -149,11 +192,37 @@
             const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()\[\]\\.,;:\s@"]+\.)+[^<>()\[\]\\.,;:\s@"]{2,})$/i;
             return re.test(String(email).toLowerCase());
         }
-    </script>
-    <div id="loader" class="loader">
-        <img src="{{ asset('images/camara.png') }}" alt="Cámara Fotográfica Girando">
-    </div>
-    
 
+        function isValidPassword(password) {
+            return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password);
+        }
+    </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var modal = document.getElementById('privacyModal');
+        var showModalButton = document.getElementById('showModal');
+        var closeModalButton = document.querySelector('.modal .close-btn');
+    
+        // Mostrar el modal
+        showModalButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Evita el comportamiento por defecto del enlace
+            modal.style.display = 'flex'; // Mostrar el modal
+        });
+    
+        // Ocultar el modal
+        closeModalButton.addEventListener('click', function() {
+            modal.style.display = 'none'; // Ocultar el modal
+        });
+    
+        // Ocultar el modal si se hace clic fuera del contenido del modal
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none'; // Ocultar el modal
+            }
+        });
+    });
+</script>
+    
 </body>
 </html>

@@ -60,12 +60,11 @@ select.small-text {
 }
 
 .profile-icon {
-    width: 150px;
-    height: 150px;
-    top: -75px; 
+    width: 100px; /* Ajuste del tamaño de la imagen */
+    height: 100px; /* Ajuste del tamaño de la imagen */
+    top: -50px; /* Ajuste de la posición */
     overflow: hidden;
 }
-
 .profile-icon img {
     width: 100%;
     height: 100%;

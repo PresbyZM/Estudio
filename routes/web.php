@@ -11,14 +11,14 @@ use App\Http\Controllers\PerfilController;
 
 /*
 
-*/
+
 
 Route::get('/', function () {
     return view('welcome');
 });
-
+*/
 /*   Rutas de login y registro  */
-Route::view('/login', "login")->name('login');
+Route::view('/', "login")->name('login');
 Route::view('/registro', "register")->name('registro');
 
 Route::post('/validar-registro', [LoginController::class, 'register'])->name('validar-registro');
@@ -41,9 +41,9 @@ Route::resource('eventos', EventosController::class)->middleware('auth')->parame
 Route::get('/calendario', [EventosController::class, 'eventos_calendario'])->middleware('auth')->name('calendario');
 
 /*   Rutas del modulo ingresos  */
-Route::get('/ingresos', [IngresosController::class, 'index'])->name('ingresos.index');
-Route::get('/ingresos/export-pdf', [IngresosController::class, 'exportPdf'])->name('ingresos.exportPdf');
+Route::get('/ingresos', [IngresosController::class, 'index'])->middleware('auth')->name('ingresos.index');
+Route::get('/ingresos/export-pdf', [IngresosController::class, 'exportPdf'])->middleware('auth')->name('ingresos.exportPdf');
 
 /*   Rutas del modulo de editar perfil  */
-Route::get('/perfil/editar', [PerfilController::class, 'edit'])->name('perfil.edit');
-Route::put('/perfil', [PerfilController::class, 'update'])->name('perfil.update');
+Route::get('/perfil/editar', [PerfilController::class, 'edit'])->middleware('auth')->name('perfil.edit');
+Route::put('/perfil', [PerfilController::class, 'update'])->middleware('auth')->name('perfil.update');

@@ -63,7 +63,7 @@
                         </div>
                         <div class="row mb-2"> 
                             <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary btn-lg animate__animated animate__pulse animate__infinite">Crear</button>
+                                <button type="submit" class="btn btn-dark-blue btn-lg animate__animated animate__pulse animate__infinite">Crear</button>
                             </div>
                         </div>
                     </form>
@@ -82,11 +82,6 @@
     @keyframes flash-animation {
         0%, 100% { border-color: red; }
         50% { border-color: white; }
-    }
-
-    .btn-primary {
-        background-color: #1a3b6c; /* Color más oscuro para el botón */
-        border-color: #1a3b6c; /* Color de borde correspondiente */
     }
 </style>
 

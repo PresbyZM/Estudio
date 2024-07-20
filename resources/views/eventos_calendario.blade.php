@@ -2,12 +2,12 @@
 <br>
 <br>
 <br>
-
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/formularios/index.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 <div class="container animate__animated animate__fadeIn">
+    <h2 class="calendar-title">Calendario de Eventos</h2>
     <div class="calendar">
         <div class="calendar-header">
             <button id="prevMonth" class="btn btn-primary btn-hover">‹</button>
@@ -32,9 +32,6 @@
             </div>
             <div class="modal-body" id="eventModalBody">
                 <!-- Event details will be populated here -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

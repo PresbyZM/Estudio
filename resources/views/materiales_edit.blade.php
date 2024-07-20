@@ -92,7 +92,7 @@
                         </div>
                         <div class="row mb-2">
                             <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary btn-lg animate__animated animate__pulse animate__infinite">Actualizar</button>
+                                <button type="submit" class="btn btn-dark-blue btn-lg animate__animated animate__pulse animate__infinite">Actualizar</button>
                             </div>
                         </div>
                     </form>
@@ -101,6 +101,7 @@
         </div>
     </div>
 </div>
+<br>
 
 <style>
     .flash {

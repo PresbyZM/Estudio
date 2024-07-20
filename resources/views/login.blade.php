@@ -7,6 +7,8 @@
     <link href="{{ asset('css/auth/login.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
 </head>
 <body>
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -38,11 +40,12 @@
             </use>
         </g>
     </svg>
-    <div class="content">
+
+    <div class="content animate__animated animate__fadeIn">
         <div class="card">
             <img src="{{ asset('images/logo.jpg') }}" alt="Logo">
             <h1>Iniciar Sesión</h1>
-            <form method="POST" action="{{ route('inicia-sesion') }}" onsubmit="showLoader()">
+            <form id="demo-form" method="POST" action="{{ route('inicia-sesion') }}" onsubmit="showLoader()">
                 @csrf
                 <div class="mb-3">
                     <input type="email" name="email_usuario" placeholder="Correo Electrónico">
@@ -55,7 +58,7 @@
                     <div class="checkbox-icon"></div>
                     <span class="checkbox-label">Mantener sesión iniciada</span>
                 </label>
-                <button type="submit">Acceder</button>
+                <button type="submit" class="g-recaptcha" data-sitekey="6Ldn4w8qAAAAAEmlRMSxAwvBwuhwAR8VK5l68alF"  data-callback='onSubmit' data-action='submit' onclick="showLoader()">Acceder</button>
             </form>
             <a href="{{ route('registro') }}" class="register-link">¿No tienes una cuenta? Regístrate</a>
         </div>
@@ -82,6 +85,10 @@
 
         function hideLoader() {
             document.getElementById('loader').style.display = 'none';
+        }
+
+        function onSubmit(token) {
+            document.getElementById("demo-form").submit();
         }
     </script>
 </body>

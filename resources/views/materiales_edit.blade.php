@@ -1,4 +1,6 @@
+
 @extends('layouts.base')
+<link rel="icon" href="{{ asset('images/camara.png') }}">
 <br>
 <br>
 @section('content')
@@ -130,21 +132,20 @@ document.addEventListener('DOMContentLoaded', function() {
         var cantidadNueva = accion === 'agregar' ? cantidadActual + cantidadCambio : cantidadActual - cantidadCambio;
         cantidadNuevaInput.value = cantidadNueva;
 
-        if (cantidadNueva > parseFloat(cantidadMaxInput.value)) {
+        if (cantidadNueva > parseFloat(cantidadMaxInput.value) || cantidadNueva < 0) {
             cantidadCambioInput.classList.add('flash');
             setTimeout(() => {
                 cantidadCambioInput.classList.remove('flash');
-                cantidadCambioInput.value = '';
-                cantidadNuevaInput.value = cantidadActual;
             }, 2500);
+            cantidadCambioInput.value = '';
+            cantidadNuevaInput.value = cantidadActual;
         }
     }
 
     cantidadCambioInput.addEventListener('input', function() {
         this.value = this.value.replace(/[^0-9.]/g, '');
         calcularCantidadNueva();
-        var valor = parseFloat(this.value) || 0;
-        if (valor < 0) {
+        if (parseFloat(this.value) < 0) {
             this.value = '';
             this.classList.add('flash');
             setTimeout(() => {

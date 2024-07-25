@@ -132,6 +132,18 @@
     </div>
 </div>
 
+<style>
+    .flash {
+        border: 3px solid red;
+        animation: flash-animation 1s infinite;
+    }
+
+    @keyframes flash-animation {
+        0%, 100% { border-color: red; }
+        50% { border-color: white; }
+    }
+</style>
+
 <script>
     function calcularResto() {
         var cotizacion = parseFloat(document.getElementById('cotizacion').value) || 0;
@@ -144,6 +156,7 @@
         }
 
         var resto = cotizacion - anticipo - descuento;
+        
 
         // Actualizar el campo "Resto por pagar"
         document.getElementById('resto').value = resto.toFixed(2);
@@ -151,6 +164,10 @@
         // Si el resto es negativo, borrar el campo "Liquidar"
         if (resto < 0) {
             document.getElementById('descuento').value = '';
+            document.getElementById('descuento').classList.add('flash');
+            setTimeout(() => {
+                document.getElementById('descuento').classList.remove('flash');
+            }, 2500);
         }
     }
 
@@ -177,6 +194,7 @@
         this.value = Math.abs(this.value);
         calcularResto(); 
     });
+
 
 </script>
 @endsection

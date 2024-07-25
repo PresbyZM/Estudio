@@ -1,4 +1,5 @@
 @extends('layouts.base')
+<link rel="icon" href="{{ asset('images/camara.png') }}">
 <br>
 <br>
 @section('content')

@@ -39,7 +39,7 @@ class EventosController extends Controller
     {
         $request->validate([
             'nombre_evento' => 'required|string|max:30',
-            'dia_evento' => 'required|date',
+            'dia_evento' => 'required|date|after_or_equal:today',
             'precio_evento' => 'required|numeric',
             'descuento' => 'nullable|numeric',
             'anticipo' => 'required|numeric',

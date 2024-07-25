@@ -111,6 +111,19 @@
     </div>
 </div>
 
+<style>
+    .flash {
+        border: 3px solid red;
+        animation: flash-animation 1s infinite;
+    }
+
+    @keyframes flash-animation {
+        0%, 100% { border-color: red; }
+        50% { border-color: white; }
+    }
+</style>
+
+
 <script>
     function calcularResto() {
         var cotizacion = parseFloat(document.getElementById('cotizacion').value) || 0;
@@ -119,6 +132,10 @@
         if (anticipo > cotizacion) {
             anticipo = cotizacion;
             document.getElementById('anticipo').value = anticipo.toFixed(2);
+            document.getElementById('anticipo').classList.add('flash');
+            setTimeout(() => {
+                document.getElementById('anticipo').classList.remove('flash');
+            }, 2500);
         }
 
         var resto = cotizacion - anticipo;
@@ -145,6 +162,16 @@
         this.value = Math.abs(this.value);
 
         calcularResto(); 
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var diaEventoField = document.getElementById('dia_evento');
+        diaEventoField.setAttribute('min', new Date().toISOString().split('T')[0]);
+        calcularResto();
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('estatus').value = 'En Curso';
     });
 </script>
 

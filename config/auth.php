@@ -40,7 +40,15 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+    
+
+    'clientes' => [  // guardia para los clientes
+        'driver' => 'session',
+        'provider' => 'clientes',
+        ],  
     ],
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -63,6 +71,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+    'clientes' => [  
+        'driver' => 'eloquent',
+        'model' => App\Models\User_cli::class,  // El modelo que apunta a la tabla usuarios_clientes
         ],
 
         // 'users' => [

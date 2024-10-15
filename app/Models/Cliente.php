@@ -10,4 +10,9 @@ class Cliente extends Model
     use HasFactory;
 
     protected $fillable = ['nombre_cliente','apellidop_cliente','apellidom_cliente','telefono_cliente','descripcion_cliente'];
+
+    public function usuario()
+    {
+        return $this->hasOne(User_cli::class, 'cliente_id');
+    }
 }

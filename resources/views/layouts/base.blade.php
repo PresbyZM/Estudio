@@ -76,9 +76,21 @@
                         </a>
                     </li>
                     <li class="list">
+                        <a href="{{ route('peticiones.index.empleado') }}" class="nav-link" onclick="showLoader()">
+                            <i class="bx bx-calendar icon"></i>
+                            <span class="link">Peticiones</span>
+                        </a>
+                    </li>
+                    <li class="list">
                         <a href="{{ route('calendario') }}" class="nav-link" onclick="showLoader()">
                             <i class="bx bx-calendar-event icon"></i>
                             <span class="link">Calendario</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a href="{{ route('servicios.index') }}" class="nav-link" onclick="showLoader()">
+                            <i class="bx bx-briefcase icon"></i>
+                            <span class="link">Servicios</span>
                         </a>
                     </li>
                     <li class="list">
@@ -93,7 +105,14 @@
                             <span class="link">Ingresos</span>
                         </a>
                     </li>
+                    <li class="list">
+                        <a href="{{ route('perfiles_index') }}" class="nav-link" onclick="showLoader()">
+                            <i class="bx bx-group icon"></i>
+                            <span class="link">Lista de usuarios</span>
+                        </a>
+                    </li>
                 </ul>
+
 
                 <div class="bottom-content">
                     <ul class="lists">

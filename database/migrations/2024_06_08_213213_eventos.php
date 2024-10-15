@@ -22,7 +22,7 @@ return new class extends Migration
             $table->date('fecha_anticipo')->nullable(); 
             $table->date('fecha_resto')->nullable(); 
             $table->string('descripcion_evento', 50); 
-            $table->string('estatus', 50); 
+            $table->string('estatus', 50)->nullable(); 
             $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
             $table->timestamps(); 

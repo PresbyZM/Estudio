@@ -158,10 +158,10 @@
         var resto = cotizacion - anticipo - descuento;
         
 
-        // Actualizar el campo "Resto por pagar"
+    
         document.getElementById('resto').value = resto.toFixed(2);
 
-        // Si el resto es negativo, borrar el campo "Liquidar"
+        
         if (resto < 0) {
             document.getElementById('descuento').value = '';
             document.getElementById('descuento').classList.add('flash');

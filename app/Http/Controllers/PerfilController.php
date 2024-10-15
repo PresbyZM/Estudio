@@ -40,23 +40,23 @@ class PerfilController extends Controller
         $user = User::find(auth()->id());
 
         if ($user) {
-            // Verificar la contraseña actual
+
             if (!Hash::check($request->current_password, $user->password)) {
                 return redirect()->back()->with('error', 'Contraseña actual incorrecta.');
             }
 
-            // Actualizar datos del usuario
+
             $user->nombre_usuario = $request->nombre_usuario;
             $user->apellidop_usuario = $request->apellidop_usuario;
             $user->apellidom_usuario = $request->apellidom_usuario;
             $user->email_usuario = $request->email_usuario;
 
-            // Actualizar contraseña solo si se proporciona una nueva contraseña
+
             if ($request->filled('password')) {
                 $user->password = Hash::make($request->password);
             }
 
-            // Guardar el usuario
+ 
             $user->save();
 
             return redirect()->route('perfil.edit')->with('success', 'Perfil actualizado correctamente');

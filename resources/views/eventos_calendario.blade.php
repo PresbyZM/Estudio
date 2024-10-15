@@ -23,7 +23,6 @@
     </div>
 </div>
 
-<!-- Modal for event details -->
 <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -32,7 +31,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="eventModalBody">
-                <!-- Event details will be populated here -->
+                
             </div>
         </div>
     </div>
@@ -42,7 +41,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         const calendarEl = document.getElementById('calendarBody');
         const calendarMonthYear = document.getElementById('calendarMonthYear');
-        const events = @json($events); // Asumiendo que $events es un array de eventos
+        const events = @json($events); 
         let currentMonth = new Date().getMonth();
         let currentYear = new Date().getFullYear();
 
@@ -55,10 +54,10 @@
                 days.push(i);
             }
 
-            // Update calendar header
+        
             calendarMonthYear.innerText = `${firstDay.toLocaleString('es-ES', { month: 'long' })} ${year}`;
 
-            // Create calendar HTML
+            
             let html = `<div class="calendar-days">
                             ${days.map(day => {
                                 let dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
@@ -72,7 +71,7 @@
 
             calendarEl.innerHTML = html;
 
-            // Add event listeners
+            
             document.querySelectorAll('.calendar-day').forEach(day => {
                 day.addEventListener('click', function() {
                     let date = this.getAttribute('data-date');

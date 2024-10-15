@@ -8,15 +8,15 @@
 
 <div class="container mt-5 animate__animated animate__fadeIn">
     <div class="row justify-content-center">
-        <div class="col-md-7"> <!-- Ajuste de tamaño de la columna -->
+        <div class="col-md-7"> 
             <div class="card border-0 shadow-lg position-relative ">
                 <div class="profile-icon position-absolute top-0 start-50 translate-middle">
                     <img src="{{ asset('images/contacto.jpg') }}" class="rounded-circle img-fluid" alt="Cliente">
                 </div>
-                <div class="card-body p-2 mt-6 "> <!-- Ajuste del padding -->
+                <div class="card-body p-2 mt-6 "> 
                     <br>
                     <div class="text-center mb-1">
-                        <h3 class="text-dark-blue  mt-4">Editar perfil</h3> <!-- Añadido margen superior -->
+                        <h3 class="text-dark-blue  mt-4">Editar perfil</h3> 
                     </div>
                     <br>
                     @if(session('success'))

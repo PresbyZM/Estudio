@@ -48,19 +48,16 @@
             <input type="email" name="email_usuacli" class="form-control" value="{{ old('email_usuacli', $usuario->email_usuacli) }}" required>
         </div>
 
-        <!-- Campo para contraseña actual -->
         <div class="form-group">
             <label for="current_password">Contraseña Actual</label>
             <input type="password" name="current_password" class="form-control" placeholder="Ingresa tu contraseña actual para confirmar">
         </div>
 
-        <!-- Campo para nueva contraseña -->
         <div class="form-group">
             <label for="password">Nueva Contraseña</label>
             <input type="password" name="password" class="form-control" placeholder="Dejar en blanco para no cambiar">
         </div>
 
-        <!-- Campo para confirmar la nueva contraseña -->
         <div class="form-group">
             <label for="password_confirmation">Confirmar Nueva Contraseña</label>
             <input type="password" name="password_confirmation" class="form-control">

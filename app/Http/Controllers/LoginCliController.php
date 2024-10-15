@@ -34,9 +34,6 @@ class LoginCliController extends Controller
         $usuario->email_usuacli = $request->email_usuacli;
         $usuario->password = Hash::make($request->password);
 
-
-
-        // Asignar cliente_id
         $cliente = Cliente::create([
             'nombre_cliente' => $usuario->nombre_usuacli,
             'apellidop_cliente' => $usuario->apellidop_usuacli,
@@ -45,7 +42,7 @@ class LoginCliController extends Controller
             'descripcion_cliente' => null,
         ]);
 
-        $usuario->cliente_id = $cliente->id; // Asignar el id del cliente recién creado
+        $usuario->cliente_id = $cliente->id; 
         $usuario->save();
 
         return redirect(route('inicio-cli'));

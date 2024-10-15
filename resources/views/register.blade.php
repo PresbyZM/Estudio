@@ -107,7 +107,7 @@
         document.getElementById('registroForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // Validación del checkbox
+            
             if (!document.getElementById('privacyCheckbox').checked) {
                 Swal.fire('Error', 'Debes aceptar el aviso de privacidad para registrarte.', 'error');
                 return;
@@ -144,13 +144,13 @@
             }
 
             if (isValid) {
-                // Desactivar el botón de envío
+                
                 document.getElementById('registroBtn').disabled = true;
                 
-                // Mostrar el loader
+                
                 document.getElementById('loader').style.display = 'flex';
 
-                // Crear un objeto FormData y enviar el formulario
+               
                 let formData = new FormData(this);
                 fetch(this.action, {
                     method: 'POST',
@@ -161,10 +161,10 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    // Manejar respuesta del servidor
+                    
                     if (data.errors && data.errors.email_usuario) {
                         Swal.fire('Error', data.errors.email_usuario[0], 'error');
-                        // Reactivar el botón de envío
+                        
                         document.getElementById('registroBtn').disabled = false;
                     } else if (data.success) {
                         Swal.fire('Éxito', 'Registro exitoso', 'success').then(() => {
@@ -172,17 +172,17 @@
                         });
                     } else {
                         Swal.fire('Error', 'Ocurrió un error al procesar el formulario.', 'error');
-                        // Reactivar el botón de envío
+                        
                         document.getElementById('registroBtn').disabled = false;
                     }
                 })
                 .catch(error => {
                     Swal.fire('Error', 'Ocurrió un error al procesar el formulario.', 'error');
-                    // Reactivar el botón de envío
+                    
                     document.getElementById('registroBtn').disabled = false;
                 })
                 .finally(() => {
-                    // Ocultar el loader
+                   
                     document.getElementById('loader').style.display = 'none';
                 });
             }
@@ -204,21 +204,21 @@
         var showModalButton = document.getElementById('showModal');
         var closeModalButton = document.querySelector('.modal .close-btn');
     
-        // Mostrar el modal
+        
         showModalButton.addEventListener('click', function(event) {
-            event.preventDefault(); // Evita el comportamiento por defecto del enlace
-            modal.style.display = 'flex'; // Mostrar el modal
+            event.preventDefault(); 
+            modal.style.display = 'flex';
         });
     
-        // Ocultar el modal
+        
         closeModalButton.addEventListener('click', function() {
-            modal.style.display = 'none'; // Ocultar el modal
+            modal.style.display = 'none';
         });
     
-        // Ocultar el modal si se hace clic fuera del contenido del modal
+        
         window.addEventListener('click', function(event) {
             if (event.target == modal) {
-                modal.style.display = 'none'; // Ocultar el modal
+                modal.style.display = 'none'; 
             }
         });
     });

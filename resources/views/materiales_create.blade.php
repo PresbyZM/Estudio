@@ -75,7 +75,7 @@
 
 <style>
     .flash {
-        border: 3px solid red; /* Cambiar el grosor del borde */
+        border: 3px solid red; 
         animation: flash-animation 1s infinite;
     }
 
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var cantidadActualInput = document.querySelector('input[name="cantidad_actual"]');
 
     cantidadActualInput.addEventListener('input', function() {
-        // Eliminar caracteres no numéricos excepto el punto decimal
+        
         this.value = this.value.replace(/[^0-9.]/g, '');
         
         var cantidadActual = parseFloat(cantidadActualInput.value) || 0;
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cantidadActualInput.classList.add('flash');
             setTimeout(() => {
                 cantidadActualInput.classList.remove('flash');
-            }, 2500); // Remover la clase después de 2.5 segundos
+            }, 2500); 
         }
 
         if (cantidadActual < 0) {
@@ -110,12 +110,12 @@ document.addEventListener('DOMContentLoaded', function() {
             cantidadActualInput.classList.add('flash');
             setTimeout(() => {
                 cantidadActualInput.classList.remove('flash');
-            }, 2500); // Remover la clase después de 2.5 segundos
+            }, 2500); 
         }
     });
 
     cantidadMaxInput.addEventListener('input', function() {
-        // Eliminar caracteres no numéricos excepto el punto decimal
+    
         this.value = this.value.replace(/[^0-9.]/g, '');
         
         var cantidadActual = parseFloat(cantidadActualInput.value) || 0;
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cantidadActualInput.classList.add('flash');
             setTimeout(() => {
                 cantidadActualInput.classList.remove('flash');
-            }, 2500); // Remover la clase después de 2.5 segundos
+            }, 2500);
         }
 
         if (cantidadMax < 0) {
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cantidadMaxInput.classList.add('flash');
             setTimeout(() => {
                 cantidadMaxInput.classList.remove('flash');
-            }, 2500); // Remover la clase después de 2.5 segundos
+            }, 2500); 
         }
     });
 });

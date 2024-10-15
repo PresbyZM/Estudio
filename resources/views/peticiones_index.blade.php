@@ -27,28 +27,28 @@
                             <p><strong>Teléfono del cliente:</strong> {{ $peticion->usuarioCliente->telefono_usuacli }}</p> 
                             
                             @if($peticion->estatus_peticion === 'Aceptado')
-                                <!-- Botón de eliminar solicitud -->
+                                
                                 <form action="{{ route('solicitudes.eliminar', ['peticion' => $peticion->id]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta solicitud?');" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Eliminar solicitud</button>
                                 </form>
 
-                                <!-- Botón de descargar ticket -->
+                               
                                 <a href="{{ route('peticiones.ticket', ['id' => $peticion->id]) }}" class="btn btn-success">Descargar Ticket</a>
                                 
                             @elseif($peticion->estatus_peticion === 'Rechazado')
-                                <!-- Botón de eliminar solicitud si el estatus es 'Rechazado' -->
+                                
                                 <form action="{{ route('solicitudes.eliminar', ['peticion' => $peticion->id]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta solicitud?');" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">Eliminar solicitud</button>
                                 </form>
                             @else
-                                <!-- Botón de aprobar solicitud -->
+                               
                                 <a href="{{ route('eventos.aprobar', ['peticion' => $peticion->id]) }}" class="btn btn-primary">Aprobar solicitud</a>
                                 
-                                <!-- Botón de rechazar solicitud -->
+                            
                                 <form action="{{ route('solicitudes.rechazar', ['peticion' => $peticion->id]) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('PUT')

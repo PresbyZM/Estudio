@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <!-- filtro de categorias-->
+
     <div class="col-12 mt-4">
         <form action="{{ route('servicios.index') }}" method="GET" class="d-flex">
             <select name="categoria" class="form-select me-2" onchange="this.form.submit()">

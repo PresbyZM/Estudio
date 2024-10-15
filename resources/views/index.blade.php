@@ -18,7 +18,7 @@
             padding: 0;
             overflow: hidden;
             font-family: 'Poppins', sans-serif;
-            background: #e3f2fd; /* Fondo azul claro */
+            background: #e3f2fd; 
             color: #333;
         }
 
@@ -36,14 +36,14 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            background: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
-            padding: 30px 20px; /* Ajuste de relleno */
-            border-radius: 15px; /* Bordes más redondeados */
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
-            backdrop-filter: blur(15px); /* Desenfoque más intenso */
+            background: rgba(255, 255, 255, 0.9); 
+            padding: 30px 20px; 
+            border-radius: 15px; 
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); 
+            backdrop-filter: blur(15px);
             width: 80%;
-            max-width: 600px; /* Ancho máximo reducido */
-            animation: fadeIn 2s ease-out; /* Animación de entrada */
+            max-width: 600px; 
+            animation: fadeIn 2s ease-out; 
         }
 
         @keyframes fadeIn {
@@ -58,15 +58,15 @@
         }
 
         .hero-title {
-            font-size: 2.5rem; /* Tamaño de fuente reducido */
+            font-size: 2.5rem;
             color: #0e4166;
             text-transform: uppercase;
             margin-bottom: 15px;
             font-weight: 900;
             letter-spacing: 2px;
             line-height: 1.2;
-            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra de texto ajustada */
-            animation: titleAnim 1.5s ease-out; /* Animación de texto */
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+            animation: titleAnim 1.5s ease-out;
         }
 
         @keyframes titleAnim {
@@ -81,13 +81,13 @@
         }
 
         .hero-subtitle {
-            font-size: 1.2rem; /* Tamaño de fuente reducido */
+            font-size: 1.2rem; 
             color: #555;
-            max-width: 500px; /* Ancho máximo reducido */
+            max-width: 500px; 
             margin: 0 auto 30px;
             line-height: 1.6;
             font-weight: 300;
-            animation: subtitleAnim 2s ease-out; /* Animación de texto */
+            animation: subtitleAnim 2s ease-out; 
         }
 
         @keyframes subtitleAnim {
@@ -102,17 +102,17 @@
         }
 
         .logo-container {
-            margin-top: 15px; /* Ajuste de margen */
+            margin-top: 15px; 
         }
 
         .hero-logo {
-            max-width: 150px; /* Tamaño del logo reducido */
+            max-width: 150px; 
             height: auto;
-            border-radius: 15px; /* Bordes más redondeados */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra ajustada */
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
             filter: brightness(1);
-            animation: logoHover 2s ease-in-out infinite; /* Efecto de rotación */
+            animation: logoHover 2s ease-in-out infinite; 
         }
 
         @keyframes logoHover {
@@ -128,10 +128,10 @@
         }
 
         .hero-logo:hover {
-            transform: scale(1.05) rotate(3deg); /* Efecto de zoom y rotación al pasar el ratón */
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); /* Sombra ajustada */
-            filter: brightness(1.2); /* Aumenta el brillo del logo al pasar el ratón */
-            animation: none; /* Desactiva la animación de rotación al pasar el ratón */
+            transform: scale(1.05) rotate(3deg); 
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            filter: brightness(1.2);
+            animation: none; 
         }
 
 
@@ -157,7 +157,7 @@
             background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 70%);
             mix-blend-mode: overlay;
             pointer-events: none;
-            opacity: 0.6; /* Ajuste de la opacidad para un efecto más sutil */
+            opacity: 0.6; 
         }
     </style>
 @endsection

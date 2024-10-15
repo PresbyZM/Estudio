@@ -49,7 +49,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <!-- Campo de Precio del Evento -->
+                        
                         <div class="col-md-6 mb-2">
                             <div class="form-floating">
                                 <input type="number" step="0.01" name="precio_evento" class="form-control form-control-lg" placeholder=" " id="cotizacion" value="{{ old('precio_evento', $precio_evento ?? 0.00) }}" oninput="calcularResto()">
@@ -60,7 +60,7 @@
                             </div>
                         </div>
 
-                        <!-- Campo de Anticipo -->
+                      
                         <div class="col-md-6 mb-2">
                             <div class="form-floating">
                                 <input type="number" step="0.01" name="anticipo" class="form-control form-control-lg" placeholder=" " id="anticipo" value="{{ old('anticipo', $anticipo ?? 0.00) }}" oninput="calcularResto()">
@@ -71,7 +71,7 @@
                             </div>
                         </div>
 
-                        <!-- Campo de Resto -->
+                        
                         <div class="col-md-6 mb-2">
                             <div class="form-floating">
                                 <input type="number" step="0.01" name="resto" class="form-control form-control-lg" placeholder=" " id="resto" value="{{ old('resto', $resto ?? 0.00) }}" readonly>
@@ -79,7 +79,7 @@
                             </div>
                         </div>
 
-                        <!-- Campo de Estatus -->
+                        
                         <div class="mb-2">
                             <div class="form-floating">
                                 <input type="text" name="estatus" class="form-control form-control-lg" placeholder=" " id="estatus" value="{{ old('estatus', $estatus ?? 'En Curso') }}">
@@ -101,7 +101,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <!-- Campo oculto para el ID de la petición -->
+                        <
                         <input type="hidden" name="peticion_id" value="{{ $peticion->id }}">
                         <br>
                         <div class="text-center">

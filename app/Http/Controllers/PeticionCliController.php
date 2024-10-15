@@ -54,16 +54,14 @@ class PeticionCliController extends Controller
     {
         $peticion = Peticion::findOrFail($id);
 
-        // Generar la vista en HTML para el PDF
+
         $html = view('clientes.ticket_pdf', compact('peticion'))->render();
 
-        // Crear instancia de Dompdf y cargar el HTML
         $dompdf = new Dompdf();
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
 
-        // Retornar el PDF generado
         return $dompdf->stream('ticket_'.$peticion->id.'.pdf');
     }
 

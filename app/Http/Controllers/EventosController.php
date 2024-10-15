@@ -118,11 +118,10 @@ class EventosController extends Controller
     {
         $eventos = Evento::all();
     
-        // Prepara los eventos en el formato que necesita FullCalendar
         $events = $eventos->map(function ($evento) {
             return [
                 'title' => $evento->nombre_evento,
-                'start' => $evento->dia_evento, // Imprime la fecha tal como está en la BD
+                'start' => $evento->dia_evento, 
                 'description' => $evento->descripcion_evento,
                 'client_name' => $evento->cliente ? $evento->cliente->nombre_cliente : 'N/A',
                 'client_phone' => $evento->cliente ? $evento->cliente->telefono_cliente : 'N/A',
@@ -132,9 +131,7 @@ class EventosController extends Controller
             ];
         });
     
-        // Imprimir el contenido de $events para verificar el formato
         
-    
         return view('eventos_calendario', ['events' => $events]);
     }
 }

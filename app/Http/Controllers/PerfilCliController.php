@@ -26,7 +26,7 @@ class PerfilCliController extends Controller
             'apellidom_usuacli' => 'required',
             'telefono_usuacli' => 'required',
             'email_usuacli' => 'required|email|unique:usuarios_clientes,email_usuacli,' . Auth::guard('clientes')->id(),
-            'current_password' => 'required_with:password', // Validar que se ingrese si se quiere cambiar la contraseña
+            'current_password' => 'required_with:password', 
             'password' => 'nullable|confirmed|min:8|max:20|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*?&#]/',
         ]);
 

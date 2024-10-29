@@ -10,4 +10,11 @@ class Servicio extends Model
     use HasFactory;
 
     protected $fillable = ['nombre_servicio', 'descripcion_servicio', 'precio_servicio', 'categoria', 'imagen'];
+
+    public function peticiones()
+    {
+        return $this->belongsToMany(Peticion::class, 'peticion_servicio');
+    }
 }
+
+

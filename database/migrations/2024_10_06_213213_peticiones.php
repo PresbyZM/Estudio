@@ -21,10 +21,8 @@ return new class extends Migration
             $table->decimal('resto_peticion', 8, 2)->nullable(); 
             $table->date('fecha_anticipo_peticion')->nullable(); 
             $table->date('fecha_resto_peticion')->nullable(); 
-            $table->string('descripcion_evento_peticion', 50); 
+            $table->text('descripcion_evento_peticion'); 
             $table->string('estatus_peticion', 50)->nullable(); 
-            $table->unsignedBigInteger('servicio_id');
-            $table->foreign('servicio_id')->references('id')->on('servicios')->onDelete('cascade');
             $table->unsignedBigInteger('usuario_cliente_id');
             $table->foreign('usuario_cliente_id')->references('id')->on('usuarios_clientes')->onDelete('cascade');
             $table->timestamps(); 

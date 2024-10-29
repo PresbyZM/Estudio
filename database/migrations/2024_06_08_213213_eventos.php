@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('resto', 8, 2)->nullable(); 
             $table->date('fecha_anticipo')->nullable(); 
             $table->date('fecha_resto')->nullable(); 
-            $table->string('descripcion_evento', 50); 
+            $table->text('descripcion_evento'); 
             $table->string('estatus', 50)->nullable(); 
             $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');

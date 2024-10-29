@@ -22,7 +22,7 @@ class PeticionCliController extends Controller
 
     public function create(Request $request): View
     {
-        $servicios = Servicio::all();
+        $servicios = Servicio::all()->groupBy('categoria');;
         $fechaSeleccionada = $request->input('dia_evento_peticion');
         return view('clientes.peticiones_create', compact('servicios', 'fechaSeleccionada'));
     }
@@ -33,15 +33,35 @@ class PeticionCliController extends Controller
             'nombre_evento_peticion' => 'required|string|max:30',
             'dia_evento_peticion' => 'required|date|after_or_equal:today',
             'descripcion_evento_peticion' => 'required|string|max:300',
-            'servicio_id' => 'required|exists:servicios,id',
+            /*'servicio_id' => 'required|exists:servicios,id',*/
+            //'servicios' => 'required|array',
+            'servicios.*' => 'exists:servicios,id',
         ]);
-
-        $data = $request->all();
+       
+        /*$data = $request->all();*/
+        $data = $request->except('servicios');
         $data['usuario_cliente_id'] = auth('clientes')->user()->id;
 
-        Peticion::create($data);
+        /*Peticion::create($data);*/
+        $peticion = Peticion::create($data);
+
+        $serviciosInput = $request->input('servicios', '');
+        $serviciosIds = array_filter(explode(',', $serviciosInput));
+
+        if (!empty($serviciosIds)) {
+            $peticion->servicios()->attach($serviciosIds);
+        }
+
         return redirect()->route('peticiones.index')->with('success', 'solicitud evento creada exitosamente');
 
+    }
+
+    public function calcularCotizacion(Request $request)
+    {
+        $serviciosIds = $request->input('servicios', []);
+        $totalCotizacion = Servicio::whereIn('id', $serviciosIds)->sum('precio_servicio');
+
+        return response()->json(['total' => $totalCotizacion]);
     }
 
     public function obtenerPrecio($id)
@@ -52,7 +72,7 @@ class PeticionCliController extends Controller
 
     public function descargarTicket($id)
     {
-        $peticion = Peticion::findOrFail($id);
+        $peticion = Peticion::with('servicios')->findOrFail($id);
 
 
         $html = view('clientes.ticket_pdf', compact('peticion'))->render();

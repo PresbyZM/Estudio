@@ -14,10 +14,18 @@
                     <p class="card-text"><strong>Cotización de evento:</strong> ${{ $peticion->precio_evento_peticion ?? 'N/A' }}</p>
                     <p class="card-text"><strong>Estatus de la petición:</strong> {{ $peticion->estatus_peticion ?? 'Pendiente' }}</p>
 
+                    <p class="card-text"><strong>Servicios:</strong>
+                        <ul>
+                            @foreach($peticion->servicios as $servicio)
+                                <li>{{ $servicio->nombre_servicio }}</li>
+                            @endforeach
+                        </ul>
+                    </p>
+
                     @if($peticion->estatus_peticion == 'Aceptado')
-                    <a href="{{ route('peticiones.ticket', $peticion->id) }}" class="btn btn-primary">Descargar Ticket</a>
+                        <a href="{{ route('peticiones.ticket', $peticion->id) }}" class="btn btn-primary">Descargar Ticket</a>
                     @elseif($peticion->estatus_peticion == 'Pendiente')
-                    <a href="{{ route('peticiones.pagar', $peticion->id) }}" class="btn btn-success">Contactar al Estudio y Pagar</a>
+                        <a href="{{ route('peticiones.pagar', $peticion->id) }}" class="btn btn-success">Contactar al Estudio y Pagar</a>
                     @endif
                 </div>
             </div>

@@ -66,7 +66,6 @@
         <h1>Ticket del Evento</h1>
         <h2>{{ $peticion->nombre_evento_peticion }}</h2>
 
-
         <p><strong>Fecha del Evento:</strong> <span class="highlight">{{ $peticion->dia_evento_peticion }}</span></p>
         <p><strong>Descripción:</strong> <span class="highlight">{{ $peticion->descripcion_evento_peticion }}</span></p>
         <p><strong>Cotización del Evento:</strong> <span class="highlight">${{ number_format($peticion->precio_evento_peticion, 2) }}</span></p>
@@ -78,8 +77,20 @@
         <p><strong>Estatus:</strong> <span class="highlight">{{ $peticion->estatus_peticion }}</span></p>
         
         <div class="divider"></div>
-        
-        <p><strong>Detalles del Servicio:</strong> <span class="highlight">{{ $peticion->servicio->nombre_servicio }}</span></p>
+
+        <p><strong>Detalles de los Servicios:</strong></p>
+        <ul>
+            @php
+                $totalServicios = 0;
+            @endphp
+            @foreach($peticion->servicios as $servicio)
+                <li>{{ $servicio->nombre_servicio }} - ${{ number_format($servicio->precio_servicio, 2) }}</li>
+                @php
+                    $totalServicios += $servicio->precio_servicio;
+                @endphp
+            @endforeach
+        </ul>
+        <p><strong>Total Servicios:</strong> <span class="highlight">${{ number_format($totalServicios, 2) }}</span></p>
 
         <div class="total">
             <p>Total Pagado: <span>${{ number_format($peticion->anticipo_peticion, 2) }}</span></p>

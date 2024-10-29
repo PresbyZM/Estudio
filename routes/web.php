@@ -111,4 +111,5 @@ Route::get('/mis-peticiones', [PeticionCliController::class, 'index'])->middlewa
 Route::get('/servicios/{id}/precio', [PeticionCliController::class, 'obtenerPrecio']);
 Route::get('/peticiones/{id}/ticket', [PeticionCliController::class, 'descargarTicket'])->middleware('client.auth')->name('peticiones.ticket');
 Route::get('/peticiones/{id}/pagar', [PeticionCliController::class, 'mostrarPago'])->name('peticiones.pagar');
+Route::post('/peticiones/calcular-cotizacion', [PeticionCliController::class, 'calcularCotizacion'])->name('peticiones.calcular-cotizacion');
 

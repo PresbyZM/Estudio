@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('apellidop_cliente', 30);
             $table->string('apellidom_cliente', 30);
             $table->string('telefono_cliente', 30);
-            $table->string('descripcion_cliente', 50)->nullable();
+            $table->text('descripcion_cliente')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

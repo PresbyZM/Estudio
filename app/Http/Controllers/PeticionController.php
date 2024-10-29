@@ -13,7 +13,7 @@ class PeticionController extends Controller
 {
     public function index(): View
     {
-        $peticiones = Peticion::with('usuarioCliente')->get(); 
+        $peticiones = Peticion::with(['usuarioCliente', 'servicios'])->get();
 
         return view('peticiones_index', compact('peticiones'));
     }
@@ -88,7 +88,5 @@ class PeticionController extends Controller
 
         return redirect()->back()->with('success', 'La solicitud ha sido rechazada.');
     }
-
-
     
 }

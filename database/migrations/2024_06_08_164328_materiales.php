@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('materiales', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_material', 30);
-            $table->string('descripcion_material', 50);
+            $table->text('descripcion_material');
             $table->integer('cantidad_actual')->nullable();
             $table->integer('cantidad_max')->nullable();
             $table->rememberToken();

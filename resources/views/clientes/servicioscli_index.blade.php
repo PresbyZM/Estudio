@@ -1,51 +1,15 @@
 @extends('../layouts.base_cliente')
 
 @section('content')
+<link rel="stylesheet" href="/css/clientes/servicios.css">
 
-<style>
-    .container {
-        max-width: 1200px;
-        margin: auto;
-        padding: 20px;
-    }
-    .filter {
-        margin-bottom: 20px;
-        text-align: center;
-    }
-    .cards-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .card {
-        background: #f9f9f9;
-        border-radius: 8px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        margin: 10px;
-        display: flex; 
-        align-items: center; 
-        text-align: center; 
-        width: 300px; 
-    }
-    .card img {
-        max-width: 150px;
-        height: auto; 
-        border-radius: 4px; 
-        margin-right: 20px;
-    }
-    .card h3 {
-        margin-bottom: 10px;
-    }
-    .card p {
-        color: #666;
-    }
-</style>
+
+<div class="banner d-flex align-items-center justify-content-end">
+    <h1>PRODUCTOS Y SERVICIOS</h1>
+</div> 
 
 <div class="container">
-    <h1 style="text-align: center;">Servicios Disponibles</h1> 
-
-
+    <!-- Filtro de categorías -->
     <div class="filter">
         <form method="GET" action="{{ route('servicios-cli.index') }}">
             <label for="categoria">Filtrar por categoría:</label>
@@ -61,21 +25,28 @@
         </form>
     </div>
 
- 
+    <!-- Tarjetas de servicios -->
     <div class="cards-container">
-        @foreach($servicios as $servicio)
-            <div class="card">
-                @if($servicio->imagen) 
-                    <img src="{{ asset('images/servicios/' . $servicio->imagen) }}" alt="{{ $servicio->nombre_servicio }}">
-                @endif
-                <div>
-                    <h3>{{ $servicio->nombre_servicio }}</h3>
-                    <p>{{ $servicio->descripcion_servicio }}</p>
-                    <p><strong>Precio:</strong> ${{ $servicio->precio_servicio }}</p>
-                    <p><strong>Categoría:</strong> {{ $servicio->categoria }}</p>
-                </div>
+    @foreach($servicios as $servicio)
+        <div class="card shadow-sm">
+            <!-- Imagen de la tarjeta -->
+            @if($servicio->imagen)
+                <img src="{{ asset('images/servicios/' . $servicio->imagen) }}" class="card-img-top" alt="{{ $servicio->nombre_servicio }}">
+            @endif
+
+            <!-- Contenido de la tarjeta -->
+            <div class="card-body p-3" style="background-color: #f3e0d6;">
+                <h5 class="card-title mb-1" style="font-weight: bold;">{{ $servicio->nombre_servicio }}</h5>
+                <p class="text-muted mb-1">Categoría: <span style="color: #a90000;">{{ $servicio->categoria }}</span></p>
+                <p class="card-text">{{ $servicio->descripcion_servicio }}</p>
             </div>
-        @endforeach
+
+            <!-- Precio en la esquina inferior derecha -->
+            <div class="precio-tag position-absolute bottom-0 end-0 m-2 px-2 py-1 text-white" style="background-color: #800000; border-radius: 5px;">
+                ${{ number_format($servicio->precio_servicio, 2) }}
+            </div>
+        </div>
+    @endforeach
     </div>
 </div>
 

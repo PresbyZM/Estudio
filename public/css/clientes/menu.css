@@ -1,0 +1,142 @@
+/* Estilos para el menú lateral */
+#sidebar {
+    background-color: #67191F;
+    color: white;
+    width: 310px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding-top: 20px;
+    border-top-right-radius: 20px;
+    z-index: 2;
+    transition: transform 0.3s ease;
+    transform: translateX(0); 
+}
+
+#sidebar.hide {
+    transform: translateX(-100%); 
+}
+
+#sidebar h4 {
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 31px;
+    margin-left: 31px;
+}
+
+#sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+#sidebar ul li {
+    margin-bottom: 15px;
+}
+
+#sidebar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 25px;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    transition: background-color 0.3s;
+    position: relative;
+    border-top-left-radius: 20px; 
+    border-bottom-left-radius: 20px;
+    margin-left: 45px;
+    margin-right: -20px;
+}
+
+#sidebar ul li a:hover, #sidebar ul li a.active {
+    color: #67191F;
+    background-color: #ffffff;
+}
+
+#sidebar ul li a i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.text-center a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1em;
+    display: inline-block;
+    margin-top: 30px;
+}
+
+.text-center a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+.content {
+    margin-left: 340px;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Contenedor de logo */
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-container img {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 10px;
+}
+
+
+#menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 3;
+    cursor: pointer;
+    color: #67191F;
+    font-size: 30px;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    #menu-toggle {
+        display: block; 
+    }
+
+    #sidebar {
+        width: 250px; 
+        transform: translateX(-100%); 
+    }
+
+    #sidebar.show {
+        transform: translateX(0); 
+    }
+
+    .content {
+        margin-left: 0; 
+    }
+}
+
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9); 
+    z-index: 1;
+}
+
+#overlay.active {
+    display: block;
+}

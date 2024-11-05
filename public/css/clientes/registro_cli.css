@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.registro-container {
+    height: 100vh;
+}
+
+.image-section {
+    background-color: #67191F;
+}
+
+.image-content {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.text1 {
+    color: #67191F;
+    font-weight: 700;
+}
+
+.text2 {
+    color: #050404;
+    font-weight: 600;
+    font-size: 0.9em; /* Reduce un poco el tamaño de la fuente */
+}
+
+.form-section {
+    background-color: #EFDBBF;
+}
+
+.form-container {
+    max-width: 400px;
+}
+
+h3 {
+    color: #67191F;
+    font-weight: bold;
+}
+
+.form-label {
+    color: #67191F;
+    margin-bottom: 0.25rem;
+}
+
+.form-control-sm {
+    height: 2rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.boton {
+    background-color: #AB3031;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: medium;
+    font-weight: 700;
+    border: none;
+    border-radius: 15px; 
+    width: 130px; 
+}
+
+.boton:hover {
+    background-color: #8A2426;
+    color: #fff;
+}
+
+.center {
+    text-align: center;
+}
+
+.custom-addon {
+    background-color: #67191F;
+    color: #FFFFFF;
+    border-color: #67191F;
+}
+
+.form-control-sm {
+    border-left: none; /* Elimina el borde entre el span y el input */
+}
+
+.input-group .form-control-sm:focus {
+    border-color: #67191F;
+    box-shadow: none;
+}
+
+
+@media (max-width: 768px) {
+    .registro-container {
+        flex-direction: column; /* Coloca la imagen arriba del formulario */
+    }
+
+    .image-section {
+        height: 20vh; /* Solo ocupa un pequeño espacio en la parte superior */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .image-content {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Muestra solo una parte de la imagen */
+    }
+
+    .form-section {
+        height: 80vh; /* Ocupa el resto de la pantalla */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form-container {
+        width: 90%;
+    }
+}

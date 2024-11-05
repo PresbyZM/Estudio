@@ -1,51 +1,39 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+8EE1JgZJfKg6aCXNycHfJPFF7qZT" crossorigin="anonymous"></script>
+    <link rel="icon" href="{{ asset('images/icon.png') }}" type="image/png">
+    <title>Foto y Video Calvario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/clientes/estilos.css') }}">
-    <script srf="{{ asset('js/clientes/javascript.js') }}"></script>
+    <script src="{{ asset('js/clientes/javascript.js') }}"></script>
+    <link rel="stylesheet" href="/css/clientes/menu.css">
+    <link rel="stylesheet" href="/css/clientes/inicio.css">
+    <link rel="stylesheet" href="/css/clientes/calendario.css">
+    <link rel="stylesheet" href="/css/clientes/peticiones.css">
+   
 </head>
+
 <body>
-    <div class="container">
-        <header class="d-flex flex-wrap align-items-center justify-content-between py-3 mb-4 border-bottom">
-
-            <div class="col-md-3 text-end">
-                <button class="btn btn-primary" id="menu-toggle">Menú</button>
-            </div>
-
-            <div class="col-md-3">
-                <a class="navbar-brand text-dark text-decoration-none" href="#">
-                    Página de inicio 
-                    @auth('clientes')
-                        de {{ Auth::guard('clientes')->user()->nombre_usuacli }} 
-                        {{ Auth::guard('clientes')->user()->apellidop_usuacli }} 
-                        {{ Auth::guard('clientes')->user()->apellidom_usuacli }}
-                    @endauth
-                </a>
-            </div>
-
-            <div class="col-md-3 text-end">
-                <a href="{{ route('logout-cli') }}">
-                    <button type="button" class="btn btn-outline-primary me-2">Salir</button>
-                </a>
-            </div>
-        </header>
-    </div>
-
+    <div id="menu-toggle"><i class="fas fa-bars"></i></div>
     <div id="sidebar">
-        <h4>Menu</h4>
+        <div class="logo-container">
+            <img src="{{ asset('images/clientes/white_logo.png') }}" alt="Logo" class="hero-logo">
+        </div>
         <ul class="list-unstyled">
-            <li><a class="dropdown-item" href="{{ route('inicio-cli') }}">Inicio</a></li>
-            <li><a class="dropdown-item" href="{{ route('perfil-cli.edit') }}">Perfil</a></li>
-            <li><a class="dropdown-item" href="{{ route('servicios-cli.index') }}">Servicios</a></li>
-            <li><a class="dropdown-item" href="{{ route('calendario.cliente') }}">Calendario</a></li>
-            <li><a class="dropdown-item" href="{{ route('peticiones.index') }}">Mis peticiones</a></li>
+            <li><a href="{{ route('inicio-cli') }}" class="menu-item" data-item="inicio"><i class="fas fa-home"></i>Inicio</a></li>
+            <li><a href="{{ route('perfil-cli.edit') }}" class="menu-item" data-item="perfil"><i class="fas fa-user"></i>Perfil</a></li>
+            <li><a href="{{ route('servicios-cli.index') }}" class="menu-item" data-item="servicios"><i class="fas fa-briefcase"></i>Productos y Servicios</a></li>
+            <li><a href="{{ route('calendario.cliente') }}" class="menu-item" data-item="calendario"><i class="fas fa-calendar-alt"></i>Calendario</a></li>
+            <li><a href="{{ route('peticiones.index') }}" class="menu-item" data-item="eventos"><i class="fas fa-list"></i>Mis eventos</a></li>
         </ul>
+        <div class="text-center mt-4">
+            <a href="{{ route('logout-cli') }}" class="text-white"><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión</a>
+        </div>
     </div>
 
     <div id="overlay"></div>
@@ -56,21 +44,19 @@
         </div>
     </section>
 
-    
     <script>
         const menuToggle = document.getElementById('menu-toggle');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
 
         menuToggle.addEventListener('click', function() {
-            sidebar.classList.toggle('active');
-            overlay.style.display = sidebar.classList.contains('active') ? 'block' : 'none'; 
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('active');
         });
 
-
         overlay.addEventListener('click', function() {
-            sidebar.classList.remove('active');
-            overlay.style.display = 'none'; 
+            sidebar.classList.remove('show');
+            overlay.classList.remove('active');
         });
     </script>
 </body>

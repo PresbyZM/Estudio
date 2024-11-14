@@ -1,0 +1,56 @@
+   .btn-custom-whatsapp {
+    background-color: #8B2C2A;
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+    text-transform: none; 
+}
+
+.btn-custom-whatsapp i {
+    margin-right: 12px;
+}
+
+.btn-custom-whatsapp:hover {
+    background-color: #5b1714;
+    transform: translateY(-4px) scale(1.05);
+    color: white;
+}
+
+.btn-custom-gmail {
+    background-color: #EFDBBF;
+    color: #8B2C2A;
+    border: none;
+    transition: all 0.3s ease;
+    text-transform: none; 
+}
+
+.btn-custom-gmail i {
+    margin-right: 12px;
+}
+
+.btn-custom-gmail:hover {
+    background-color: #d4b88b;
+    transform: translateY(-4px) scale(1.05);
+}
+
+
+#tarjeta-banco {
+    background: linear-gradient(135deg, #3a7d44, #62c470); 
+    color: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); 
+}
+
+#tarjeta-banco h5, #tarjeta-banco h3, #tarjeta-banco p {
+    margin: 0;
+}
+
+#tarjeta-banco .card-body {
+    padding: 20px;
+    position: relative;
+}
+
+#tarjeta-banco .card-body img {
+    position: relative;
+    width: 60px;
+}

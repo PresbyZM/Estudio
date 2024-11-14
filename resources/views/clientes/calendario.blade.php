@@ -3,80 +3,46 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/formularios/index.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
-<style>
-    .container {
-        text-align: center;
-        margin: auto;
-        width: 80%;
-    }
-    .calendar-title {
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
-    .calendar {
-        display: inline-block;
-        background: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        padding: 20px;
-        margin-bottom: 20px;
-    }
-    .calendar-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-    .calendar-month {
-        font-size: 20px;
-        font-weight: bold;
-    }
-    .calendar-days {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 5px;
-    }
-    .calendar-day {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 5px;
-        border: 1px solid #ddd;
-    }
-    .calendar-day:hover {
-        background-color: #f0f0f0;
-        cursor: pointer;
-    }
-    .occupied {
-        background-color: #d0e6f9;
-    }
-    .btn-hover {
-        cursor: pointer;
-    }
-    .event-icon {
-        width: 16px;
-        height: 16px;
-    }
-</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/css/clientes/calendario.css">
 
 <div class="container animate__animated animate__fadeIn">
-    <h2 class="calendar-title">Calendario de Eventos</h2>
-    <div class="calendar">
-        <div class="calendar-header">
-            <button id="prevMonth" class="btn btn-primary btn-hover">‹</button>
-            <span class="calendar-month" id="calendarMonthYear"></span>
-            <button id="nextMonth" class="btn btn-primary btn-hover">›</button>
+    
+    <div class="banner">
+        <h1>CALENDARIO</h1>
+    </div>
+    
+    <div class="month-selector-container">
+        <button id="prevMonth" class="month-nav-button">
+            <i class="fa-solid fa-caret-left"></i>
+        </button>
+
+        <div class="calendar-month-container">
+            <span class="calendar-month" id="calendarMonth" style="text-transform: uppercase;"></span>
+            <span class="calendar-year" id="calendarYear"></span>
         </div>
+
+
+        <button id="nextMonth" class="month-nav-button">
+            <i class="fa-solid fa-caret-right"></i>
+        </button>
+    </div>
+
+    <div class="calendar">
         <div id="calendarBody" class="calendar-body"></div>
     </div>
 </div>
-
+<div class="floating-button-container">
+    <button class="floating-button">
+        <span class="button-text">Nueva Solicitud</span>
+        <span class="icon-circle">
+            <i class="fas fa-plus"></i>
+        </span>
+    </button>
+</div>
 <script>
-    // Variables y eventos ocupados
-    const fechasEventos = @json($fechasEventos); // Formato ["2023-11-10", "2023-12-25", etc.]
+    
+    const fechasEventos = @json($fechasEventos); 
     
     let currentMonth = new Date().getMonth();
     let currentYear = new Date().getFullYear();
@@ -91,13 +57,14 @@
         }
 
         const calendarBody = document.getElementById('calendarBody');
-        document.getElementById('calendarMonthYear').innerText = `${firstDay.toLocaleString('es-ES', { month: 'long' })} ${year}`;
+        document.getElementById('calendarMonth').innerText = firstDay.toLocaleString('es-ES', { month: 'long' });
+        document.getElementById('calendarYear').innerText = year;
         calendarBody.innerHTML = `<div class="calendar-days">${days.map(day => {
             const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
             const isOccupied = fechasEventos.includes(dateStr);
             return `<div class="calendar-day ${isOccupied ? 'occupied' : ''}" ${!isOccupied ? `onclick="openPeticionForm('${dateStr}')"` : ''}>
                         ${day}
-                        ${isOccupied ? `<img src="{{ asset('images/camara.png') }}" class="event-icon" alt="Evento">` : ''}
+                        ${isOccupied ? `<i class="fas fa-camera event-icon"></i>` : ''}
                     </div>`;
         }).join('')}</div>`;
     }
@@ -119,6 +86,11 @@
     });
 
     renderCalendar(currentMonth, currentYear);
+
+    // NUEVO BOTONCITO JIJI :3
+    document.querySelector('.floating-button').addEventListener('click', () => {
+        window.location.href = '/peticiones/create';
+    });
 </script>
 
 @endsection

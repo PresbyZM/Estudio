@@ -1,0 +1,194 @@
+
+ body {
+    margin: 0;
+    padding: 0;
+    
+}
+
+
+.container {
+    max-width: 100%;
+    padding: 0;
+    margin-top: 180px;
+}
+
+.banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background-image: url('/images/clientes/bn_calendar.png');
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+    z-index: -1;
+}
+
+.banner h1 {
+    color: white;
+    font-size: 3em;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    padding: 10px 30px;
+    border-radius: 8px;
+    text-align: center;
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.month-selector-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.month-nav-button {
+    background-color: transparent !important;
+    border: none !important;
+    color: #8B2C2A !important;
+    font-size: 2em;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.calendar-month-container {
+    text-align: center;
+    width: 100%;
+}
+
+.calendar-month {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #8B2C2A;
+}
+
+.calendar-year {
+    font-size: 1.2em;
+    color: #000000;
+    font-weight: bold;
+    display: block;
+    margin-top: 5px;
+}
+
+.event-icon {
+    color: #8B2C2A !important;
+}
+
+
+.floating-button-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.floating-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 25px;
+    background-color: white;
+    color: #8B2C2A;
+    border: 2px solid #8B2C2A;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: visible;
+}
+
+.floating-button:hover {
+    background-color: #f5f5f5;
+    border-color: #a13b39;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.button-text {
+    margin-right: 15px;
+    font-size: 1em;
+}
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #8B2C2A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    position: absolute;
+    right: -20px;
+}
+
+.icon-circle i {
+    font-size: 22px;
+}
+
+@media (max-width: 768px) {
+    .banner h1 {
+        font-size: 2em;
+        padding: 6px 15px;
+        left: 50%; 
+        top: 50%; 
+        transform: translate(-50%, -50%);
+    }
+    .month-nav-button {
+        font-size: 1.5em;
+    }
+    .calendar-day {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+    .calendar {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner h1 {
+        font-size: 1.5em;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .month-nav-button {
+        font-size: 1em;
+    }
+    .calendar-day {
+        font-size: 0.8em;
+        padding: 6px;
+    }
+}
+.swal-btn {
+    background-color: #8B2C2A !important;
+    color: white !important;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.swal-btn:hover {
+    background-color: #a13b39;
+}

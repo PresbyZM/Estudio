@@ -51,6 +51,7 @@ class LoginController extends Controller
 
     public function login(Request $request){
 
+        
         $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify',[
             'secret' => '6Ldn4w8qAAAAAHcomjE2hve361vT9Jv4DzGPLiAC',
             'response'=> $request->input('g-recaptcha-response')
@@ -61,6 +62,7 @@ class LoginController extends Controller
         } else {
             return redirect('/')->with('error', 'reCaptcha fallido');
         }
+        
         
         //return $response;
 

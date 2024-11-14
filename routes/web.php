@@ -109,7 +109,7 @@ Route::get('/calendario-cliente', [CanlendarioCliController::class, 'calendarioC
 Route::resource('peticiones', PeticionCliController::class)->parameters(['peticiones' => 'peticion'])->middleware('client.auth');
 Route::get('/mis-peticiones', [PeticionCliController::class, 'index'])->middleware('client.auth')->name('peticiones.index');
 Route::get('/servicios/{id}/precio', [PeticionCliController::class, 'obtenerPrecio']);
-Route::get('/peticiones/{id}/ticket', [PeticionCliController::class, 'descargarTicket'])->middleware('client.auth')->name('peticiones.ticket');
+Route::get('/peticiones/{id}/ticket', [PeticionCliController::class, 'descargarTicket'])->name('peticiones.ticket');
 Route::get('/peticiones/{id}/pagar', [PeticionCliController::class, 'mostrarPago'])->name('peticiones.pagar');
 Route::post('/peticiones/calcular-cotizacion', [PeticionCliController::class, 'calcularCotizacion'])->name('peticiones.calcular-cotizacion');
 

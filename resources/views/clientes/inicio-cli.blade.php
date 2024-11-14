@@ -1,13 +1,15 @@
 @extends('../layouts.base_cliente')
 
 @section('content')
+<link rel="stylesheet" href="/css/clientes/inicio.css">
+
 <div class="banner-inicio">
     <img src="/images/clientes/logo_v2.png" alt="Logo" class="banner-logo">
     
     <p class="banner-subtitulo">Momentos reales, recuerdos eternos</p>
 </div>
 
-<div class="container">
+<div class="container animate__animated animate__fadeIn">
     <div class="row">
         <div class="col-md-8 mb-3">
             <img src="/images/clientes/volante.png" class="card-img-top rounded-2 shadow-lg" alt="Servicios de Fotografía">

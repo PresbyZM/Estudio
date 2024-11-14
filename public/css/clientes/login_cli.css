@@ -6,28 +6,43 @@
 
 html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
     font-family: Arial, sans-serif;
 }
 
+
 .login-container {
+    display: flex;
     height: 100vh;
+    overflow: hidden; 
 }
+
 
 .image-section {
     background-color: #67191F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    overflow: hidden; 
 }
 
 .image-content {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 80%;
+    max-height: 80%;
     border-radius: 10px;
+    object-fit: cover; 
 }
 
+
 .logo {
-    width: 250px;
-    height: 250px;
+    width: 230px;
+    height: 230px;
     object-fit: contain;
 }
+
 
 .text1 {
     color: #67191F;
@@ -43,11 +58,18 @@ html, body {
 
 .form-section {
     background-color: #EFDBBF;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto; 
 }
 
 .form-container {
     max-width: 400px;
+    overflow: hidden;
 }
+
 
 h2 {
     color: #67191F;
@@ -58,6 +80,7 @@ h2 {
     color: #67191F;
 }
 
+
 .boton {
     background-color: #AB3031;
     color: #fff;
@@ -67,6 +90,7 @@ h2 {
     border: none;
     border-radius: 15px; 
     width: 150px; 
+    transition: background-color 0.3s;
 }
 
 .boton:hover {
@@ -84,6 +108,7 @@ p a:hover {
     text-decoration: underline;
 }
 
+
 .password-input {
     padding-right: 2.5rem; 
 }
@@ -99,19 +124,19 @@ p a:hover {
     z-index: 1;
 }
 
-.center{
+
+.center {
     text-align: center;
 }
 
 
-
 @media (max-width: 768px) {
-    .registro-container {
+    .login-container {
         flex-direction: column; 
     }
 
     .image-section {
-        height: 20vh;
+        height: 20vh; 
         display: flex;
         align-items: center;
         justify-content: center;

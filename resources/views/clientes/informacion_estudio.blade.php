@@ -9,6 +9,7 @@
     <link rel="icon" href="{{ asset('images/icon.png') }}" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="/css/clientes/estilos.css"> -->
 
 </head>
 <body>
@@ -157,7 +158,8 @@
                         <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body custom-modal-body" style="text-align: justify;">
-                        Nuestro servicio de edición de video y fotos está diseñado para dar un toque profesional a tus imágenes y grabaciones. Contamos con un equipo de editores expertos que utilizan software avanzado para mejorar la calidad visual y sonora de tus materiales. Ofrecemos una variedad de opciones de edición, desde retoques sutiles hasta montajes creativos, asegurando que cada recuerdo se presente de la mejor manera posible.
+                        Nuestro servicio de edición de video y fotos está diseñado para dar un toque profesional a tus imágenes y grabaciones.
+                        Ofrecemos una variedad de opciones de edición, desde retoques sutiles hasta montajes creativos, asegurando que cada recuerdo se presente de la mejor manera posible.
                     </div>
                 </div>
             </div>
@@ -176,8 +178,6 @@
                 </div>
                 <div class="col-xl-6 col-lg-5">
                     <p class="py-2 text-justify justify-content-">En Foto y Video El Calvario, somos un equipo apasionado de profesionales dedicados a capturar los momentos más especiales de tu vida. Con años de experiencia en la cobertura de eventos como XV años, bodas y bautizos, nuestro objetivo es ofrecerte un servicio rápido, eficiente y de alta calidad.
-
-                    Nos especializamos en filmación y fotografía, creando imágenes que cuentan historias únicas y memorables. Además, ofrecemos servicios de edición profesional y opciones de impresión para que tus recuerdos sean eternos. En El Calvario, tu satisfacción es nuestra prioridad, y estamos aquí para hacer de tu evento un momento inolvidable. ¡Déjanos ser parte de tus recuerdos!
                     </p>
                     <button class="btn">REGISTRATE</button>
                 </div>

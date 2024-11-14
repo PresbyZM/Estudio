@@ -29,6 +29,7 @@ class PeticionCliController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+        //dd($request->all());
         $request->validate([
             'nombre_evento_peticion' => 'required|string|max:30',
             'dia_evento_peticion' => 'required|date|after_or_equal:today',

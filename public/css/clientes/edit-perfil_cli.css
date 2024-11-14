@@ -1,0 +1,67 @@
+body {
+    background-color: #ffffff;
+    color: #FFFFFF;
+}
+
+.perfil-container {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 800px;
+    margin: 30px auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile {
+    text-align: center;
+    width: 150px;
+    height: 150px;
+}
+
+.text-vino {
+    color: #67191F;
+}
+
+.form-label {
+    color: #67191F;
+    font-weight: bold;
+}
+
+.custom-addon {
+    background-color: #67191F;
+    color: #FFFFFF;
+    border-color: #67191F;
+}
+
+.input-group .form-control:focus {
+    border-color: #67191F;
+    box-shadow: none;
+}
+
+.btn-vino {
+    background-color: #AB3031;
+    color: #FFFFFF;
+    font-weight: 700;
+    border-radius: 15px;
+    padding: 10px 20px;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.btn-vino:hover {
+    background-color: #8A2426;
+}
+
+.btn-toggle-password {
+    background: #67191F;
+    border: none;
+    color: #FFF;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+@media (max-width: 768px) {
+    .perfil-container {
+        padding: 20px;
+    }
+}

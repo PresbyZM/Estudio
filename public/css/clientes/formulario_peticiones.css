@@ -1,0 +1,73 @@
+.text-wine {
+    color: #67191F;
+}
+
+.btn-outline-wine {
+    color: #67191F;
+    border-color: #67191F;
+}
+
+.btn-outline-wine:hover {
+    background-color: #67191F;
+    color: #fff;
+}
+
+.btn-wine {
+    background-color: #67191F;
+    color: #fff;
+}
+
+.btn-wine:hover {
+    background-color: #5a0018;
+    color: white;
+}
+
+.flash {
+    border: 3px solid red;
+    animation: flash-animation 1s infinite;
+}
+
+@keyframes flash-animation {
+    0%, 100% { border-color: red; }
+    50% { border-color: white; }
+}
+
+.swal2-popup {
+    background-color: #fff3f3 !important;
+    border-radius: 10px;
+    color: #67191F;
+}
+
+.swal2-title {
+    color: #67191F;
+}
+
+.swal2-confirm {
+    background-color: #67191F;
+    color: #fff;
+    border: none;
+}
+
+.swal2-confirm:hover {
+    background-color: #5a0018;
+}
+
+.swal2-cancel {
+    background-color: #f5c6cb;
+    color: #67191F;
+    border: none;
+}
+
+.swal2-cancel:hover {
+    background-color: #e1a1a8;
+}
+
+.swal2-popup {
+    width: 80% !important;
+    max-width: 900px !important;
+    padding: 30px !important;
+}
+
+.card-text {
+    font-size: 0.875rem;
+}

@@ -3,12 +3,12 @@
 @section('content')
 <link rel="stylesheet" href="/css/clientes/servicios.css">
 
+<div class="container animate__animated animate__fadeIn">
 
-<div class="banner d-flex align-items-center justify-content-end">
-    <h1>PRODUCTOS Y SERVICIOS</h1>
-</div> 
+    <div class="banner d-flex align-items-center justify-content-end">
+        <h1>PRODUCTOS Y SERVICIOS</h1>
+    </div> 
 
-<div class="container">
     <!-- Filtro de categorías -->
     <div class="filter">
         <form method="GET" action="{{ route('servicios-cli.index') }}">

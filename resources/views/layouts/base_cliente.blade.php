@@ -12,9 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/clientes/estilos.css') }}">
     <script src="{{ asset('js/clientes/javascript.js') }}"></script>
     <link rel="stylesheet" href="/css/clientes/menu.css">
-    <link rel="stylesheet" href="/css/clientes/inicio.css">
-    <link rel="stylesheet" href="/css/clientes/calendario.css">
-    <link rel="stylesheet" href="/css/clientes/peticiones.css">
+    
    
 </head>
 
@@ -39,6 +37,7 @@
     <div id="overlay"></div>
 
     <section class="content">
+
         <div class="container mt-4">
             @yield('content')
         </div>

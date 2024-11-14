@@ -1,16 +1,13 @@
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
 body, html {
     height: 100%;
     overflow-x: hidden; 
 }
-
 
 aside {
     position: relative;
@@ -43,7 +40,6 @@ aside {
     transform: translateY(-50%);
 }
 
-
 .container {
     max-width: 1200px;
     margin: auto;
@@ -63,44 +59,47 @@ aside {
 }
 
 .cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; 
+    justify-items: center;
+    padding: 0 20px;
+}
 
-    .card {
-        width: 18rem;
-        border: none;
-        border-radius: 10px;
-        overflow: hidden;
-        position: relative;
-        margin: 10px;
-        padding-bottom: 30px; 
-        
-        background: #f3e0d6;
-    }
+.card {
+    width: 100%;
+    max-width: 18rem; 
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 30px;
+    background: #f3e0d6;
+}
 
-    .card img {
-        width: 100%;
-        height: auto;
-        border-bottom: 1px solid #ddd;
-    }
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
 
-    .precio-tag {
-        font-size: 1rem;
-        font-weight: bold;
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        margin: 8px;
-        padding: 4px 8px;
-        background-color: #f3e0d6;
-        color: white;
-        border-radius: 5px;
-    }
+.precio-tag {
+    font-size: 1rem;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 8px;
+    padding: 4px 8px;
+    background-color: #f3e0d6;
+    color: white;
+    border-radius: 5px;
+}
 
-    .card img {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
+
+@media (max-width: 768px) {
+    .cards-container {
+        grid-template-columns: 1fr; 
     }
+}

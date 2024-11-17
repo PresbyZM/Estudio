@@ -35,12 +35,11 @@ jobs:
           mkdir -p database
           touch database/database.sqlite
 
-      - name: Ejecutar pruebas de Laravel y generar reporte
+      - name: Ejecutar pruebas de Laravel
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
         run: php artisan test > test-report.txt
-
 
       - name: Almacenar reporte de pruebas
         if: always()  
@@ -71,6 +70,19 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/estudio:latest
+
+      - name: Guardar imagen Docker como archivo
+        run: docker save ${{ secrets.DOCKER_HUB_USERNAME }}/estudio:latest -o estudio.tar
+
+      - name: Almacenar imagen Docker como artefacto
+        if: success()
+        uses: actions/upload-artifact@v2
+        with:
+          name: docker-image
+          path: estudio.tar
+
+      - name: Ejecutar imagen Docker en contenedor de prueba
+        run: docker run -d --name test-container -p 8000:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/estudio:latest
 
       - name: Trigger Render Deploy
         if: success()  # Solo si todos los pasos anteriores pasan

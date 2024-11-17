@@ -42,9 +42,8 @@ jobs:
           DB_DATABASE: database/database.sqlite
         run: php artisan test > test-report.txt
 
-      # Almacenar el archivo de reporte de pruebas como artefacto
       - name: Almacenar reporte de pruebas
-        if: always()  # Esto asegura que el artefacto se guarde incluso si fallan las pruebas
+        if: always()  
         uses: actions/upload-artifact@v3
         with:
           name: test-report
@@ -72,21 +71,6 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/estudio:latest
-
-      # Almacenar la imagen Docker como artefacto
-      - name: Guardar imagen Docker como archivo
-        run: docker save ${{ secrets.DOCKER_HUB_USERNAME }}/estudio:latest -o estudio.tar
-
-      - name: Almacenar imagen Docker como artefacto
-        if: success()
-        uses: actions/upload-artifact@v3
-        with:
-          name: docker-image
-          path: estudio.tar
-
-      # Despliegue local en contenedor para prueba
-      - name: Ejecutar imagen Docker en contenedor de prueba
-        run: docker run -d --name test-container -p 8000:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/estudio:latest
 
       - name: Trigger Render Deploy
         if: success()  # Solo si todos los pasos anteriores pasan

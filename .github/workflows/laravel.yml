@@ -35,11 +35,19 @@ jobs:
           mkdir -p database
           touch database/database.sqlite
 
-      - name: Ejecutar pruebas de Laravel
+      - name: Ejecutar pruebas de Laravel y generar reporte
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
-        run: php artisan test
+        run: php artisan test > test-report.txt
+
+
+      - name: Almacenar reporte de pruebas
+        if: always()  
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-report
+          path: test-report.txt
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@master

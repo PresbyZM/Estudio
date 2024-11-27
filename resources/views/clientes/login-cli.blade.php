@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://www.google.com/recaptcha/api.js"></script>
-    <link rel="stylesheet" href="/css/clientes/estilos.css">
 </head>
 <body>
     <div class="login-container row m-0">
@@ -52,10 +51,14 @@
                             <i class="fas fa-eye" id="togglePasswordIcon" style="color: #AB3031;"></i>
                         </span>
                     </div>
+                    
                     <div class="text-center">
                         <button type="submit" class="boton g-recaptcha" data-sitekey="6Ldn4w8qAAAAAEmlRMSxAwvBwuhwAR8VK5l68alF" data-callback='onSubmit' data-action='submit'>Ingresar</button>
                     </div>
                     <p class="text-center mt-3">¿No tienes una cuenta? <a href="{{route('registro-cli')}}">Regístrate</a></p>
+                    <div class="mt-2">
+                        <button type="button" class="volver-boton" onclick="volver()">Volver</button>
+                    </div>
                 </form>
             </div>
         </div>

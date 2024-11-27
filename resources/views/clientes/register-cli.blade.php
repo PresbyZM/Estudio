@@ -17,6 +17,7 @@
         <div class="col-md-6 image-section d-flex align-items-center justify-content-center">
             <img src="{{ asset('images/clientes/camera.jpg') }}" alt="Equipo de cámaras" class="image-content">
         </div>
+
         <div class="col-md-6 form-section d-flex align-items-center justify-content-center">
             <div class="form-container p-3 rounded shadow-sm bg-white w-75">
                 <div class="text-center mb-3">
